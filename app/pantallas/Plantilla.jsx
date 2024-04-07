@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button} from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import CreateOracion from './CrearOracion';
+import { Stack, router } from 'expo-router';
 
 //console.log(CreateOracion);
 
@@ -40,8 +41,8 @@ function PlantillaOracion() {
         //setOracionInfo({ valorName: selectedName, valorOracion: selectedValue, navigation: navigation });
         
         try {
-            setOracionInfo({ valorName: selectedName, valorOracion: selectedValue, navigation: navigation });
-            //Alert.alert('Oracion enviada con exito');
+            setOracionInfo({ valorName: selectedName, valorOracion: selectedValue});
+            Alert.alert('Oracion enviada con exito');
         } catch (error) {
             console.log(error);
             Alert.alert('Error al enviar la oracion');
@@ -58,6 +59,20 @@ function PlantillaOracion() {
     return (
         <View>
             <View>
+
+            <Stack.Screen
+              options={{
+                headerTitle: 'Ora por su ser querido',
+                headerTitleAlign: 'start',
+                /*
+                headerRight:  () => (
+                <Button onPress={Alert.alert("Cerrar sesión")} title="Cerrar sesión"  />
+                ),
+                */
+              }}
+              /> 
+
+
                 <Text style={styles.txtMainPlantilla}>Pide por tu ser querido</Text>
 
                 <View style={styles.containerValuesMain}>

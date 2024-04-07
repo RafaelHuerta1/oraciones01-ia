@@ -3,9 +3,10 @@
  * @situacion: este parametro es la situacion por la que esta pasando la persona
  */
 import { useState, useEffect } from 'react';
-//import MisOraciones from '../screens/MisOraciones';
+import MisOraciones from '../(tabs)/MisOraciones';
 //import { Text } from 'react-native';
 //import { Modal, View, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 //export  let oracionesCreadas = [];
 import { getDatabase, ref, push } from "firebase/database";
@@ -17,7 +18,13 @@ import { initializeApp } from 'firebase/app';
 const app = initializeApp(firebaseConfig);
 
 // createOracion
-export default function CreateOracion({ valorName, valorOracion, navigation }) {
+export default function CreateOracion({ valorName, valorOracion}) {
+
+
+    const navigation = useNavigation();
+
+
+
     //console.log(navigation)
     const [oracionesCreadas, setOracionesCreadas] = useState([]);
     //const [isTrue, setIsTrue] = useState(false); 

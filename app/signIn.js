@@ -6,7 +6,7 @@ import firebaseConfig from '../src/firebase';
 import { initializeApp } from 'firebase/app';
 import { router, useNavigation } from 'expo-router';
 const app = initializeApp(firebaseConfig);
-app
+
 const provider = new GoogleAuthProvider();
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
