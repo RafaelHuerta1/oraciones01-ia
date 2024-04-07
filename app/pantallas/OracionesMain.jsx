@@ -1,5 +1,5 @@
 import React from "react";
-import { router } from 'expo-router';
+import { router, Link } from 'expo-router';
 import { View, Text,FlatList, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
 //import OracionesFeed from "../screens/Oraciones";
 //import GenerarOraciones from "../screens/GenerarOraciones";
@@ -30,9 +30,8 @@ const OracionesMain = () => {
   let numColumns = 2;
  const renderItem = ({ item }) => <Item title={item.title} />;
 
-const goPlantillaOracion = () => {
-  router.push("/Plantilla");
-}
+//const goPlantillaOracion = () => {
+  
 
 return (
   <TouchableOpacity onPress={ () => navigation.navigate("Orar") }>
@@ -52,9 +51,12 @@ return (
           }
           /> 
           <Text >{""}</Text>
-          <TouchableOpacity  style={styles.containerBtnGenerate} onPress={ goPlantillaOracion }>
+          <Link href="/pantallas/Plantilla" asChild>
+          <TouchableOpacity  style={styles.containerBtnGenerate}>
           <Text style={{margin:15, fontSize:21, fontWeight:"500", color:"white", textAlign:"center"  }}>Orar por su ser Querido</Text>
           </TouchableOpacity>
+          </Link>
+        
       </View>
   </TouchableOpacity>
     

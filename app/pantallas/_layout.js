@@ -37,32 +37,22 @@ export default function Layout() {
 
   return (
     <Stack
-    >
-
-    <Stack.Screen name="Home"  options={{
-        headerTitle: 'Ora por tu ser querido',
-        headerTitleAlign: 'left',
-        headerRight: () => (
-            <Button
-              onPress={logout}
-              title="Cerrar sesión"
-              color="#03045E"
-            />
-          ), // Agrega un botón a la derecha del encabezado
-    }}/>
-
-    <Stack.Screen name="Plantilla"  options={{
-        headerTitle: 'Pide por su ser querido',
-        headerTitleAlign: 'left',
-        headerRight: () => (
-            <Button
-             // onPress={logout}
-              title="Cerrar sesión"
-              color="#03045E"
-            />
-          ), // Agrega un botón a la derecha del encabezado
-    }}/>
-
+      // https://reactnavigation.org/docs/headers#sharing-common-options-across-screens
+      /*
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+      */
+      >
+      {/* Optionally configure static options outside the route. */}
+      <Stack.Screen name="Home" options={{}} />
+      <Stack.Screen name="Plantilla" options={{}} />
     </Stack>
   );
 }
