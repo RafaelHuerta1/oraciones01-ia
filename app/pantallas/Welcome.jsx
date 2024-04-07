@@ -13,7 +13,7 @@ console.log(props)
         <View  style={styles.containerMain}>
             <Text style={styles.txtMain}  >Bienvenido a OracionesIA</Text>
             <Image
-                source={require('../assets/img2.png')}
+                source={require('../../src/assets/img2.png')}
                 style={{ width: 305, height: 300 }}
             />
         

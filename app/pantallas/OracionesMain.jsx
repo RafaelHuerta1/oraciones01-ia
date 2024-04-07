@@ -1,4 +1,5 @@
 import React from "react";
+import { router } from 'expo-router';
 import { View, Text,FlatList, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
 //import OracionesFeed from "../screens/Oraciones";
 //import GenerarOraciones from "../screens/GenerarOraciones";
@@ -21,10 +22,17 @@ const Item = ({ title }) => (
   </View>
 );
 
-const OracionesMain = ({navigation}) => {
-  console.log(navigation)
+const OracionesMain = () => {
+
+
+
+
   let numColumns = 2;
  const renderItem = ({ item }) => <Item title={item.title} />;
+
+const goPlantillaOracion = () => {
+  router.push("/Plantilla");
+}
 
 return (
   <TouchableOpacity onPress={ () => navigation.navigate("Orar") }>
@@ -38,13 +46,13 @@ return (
           numColumns={numColumns}
           ListHeaderComponent={
             <View>
-                          <Text style={{margin:15, fontSize:22, fontWeight:"300", }}>Puedes orar por alguna de las siguientes Intenciones.</Text>
+                          <Text style={{margin:7, fontSize:22, fontWeight:"300", }}>Puedes orar por alguna de las siguientes Intenciones.</Text>
 
             </View>
           }
           /> 
           <Text >{""}</Text>
-          <TouchableOpacity  style={styles.containerBtnGenerate} onPress={ () => navigation.navigate("Orar") }>
+          <TouchableOpacity  style={styles.containerBtnGenerate} onPress={ goPlantillaOracion }>
           <Text style={{margin:15, fontSize:21, fontWeight:"500", color:"white", textAlign:"center"  }}>Orar por su ser Querido</Text>
           </TouchableOpacity>
       </View>
@@ -103,7 +111,7 @@ const styles = StyleSheet.create({
       alignContent: 'center',
       alignSelf: 'center',
      // marginLeft: 15,
-     marginTop: 20,
+     marginTop: -12,
      padding: 2,
     },
     txtMain: {

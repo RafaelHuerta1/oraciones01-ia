@@ -4,7 +4,7 @@ import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import firebaseConfig from '../src/firebase';
 import { initializeApp } from 'firebase/app';
-
+import { router, useNavigation } from 'expo-router';
 const app = initializeApp(firebaseConfig);
 app
 const provider = new GoogleAuthProvider();
@@ -25,12 +25,12 @@ import {
 
 
 
-
-
-
 const auth = getAuth();
 
-function signIn() {
+function signIn(  ) { 
+
+
+  
   const [value, setValue] = React.useState({
     email: "",
     password: "",
@@ -46,6 +46,20 @@ const onRequestClose = () => {
   setModalVisible(false);
 };
 
+const recuperarContrasena = () => {
+  console.log("Recuperar contraseña");
+  router.push('/RecuperarCuenta');
+  
+};
+
+const createCuentaGo = () => {
+  console.log("Crear cuenta");
+  router.push('/signUp');
+};
+
+
+
+
   async function signInUser() {
    // console.log(value.email);
     //console.log("Hola mundo")
@@ -60,7 +74,8 @@ const onRequestClose = () => {
 
         try {
           await signInWithEmailAndPassword(auth, value.email, value.password);
-
+          console.log('Usuario logueado');
+          router.push('/pantallas/Home');
         } catch (error) {
           console.log(error);
           let errorMessage = '';
@@ -146,7 +161,7 @@ const onRequestClose = () => {
           </TouchableOpacity>
         </View>
         <Text style={{marginTop:15}}
-        //onPress={() => navigation.navigate("Sign Up")}
+        onPress={createCuentaGo}
         >
           No tienes cuenta?{" "}
           <Text
@@ -157,7 +172,7 @@ const onRequestClose = () => {
         </Text>
         <Text 
         style={{marginTop:15}}
-       // onPress={() => navigation.navigate("RecuperarContrasena") }
+        onPress={recuperarContrasena}
         >
           Olvidaste tu contraseña?{" "}
           <Text

@@ -3,12 +3,12 @@ import { Text, View, StyleSheet} from 'react-native';
 //import { useAuth } from '../hooks/userAuth';
 import OracionesFeed from "./Oraciones";
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
  // console.log(navigation)
 
   return (
     <View style={styles.mainContainerHome}>
-      <OracionesFeed navigation={navigation} />
+      <OracionesFeed />
     </View>
   );
 }

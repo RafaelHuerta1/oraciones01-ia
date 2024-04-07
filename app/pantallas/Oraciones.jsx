@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, ScrollView,  } from 'react-native';
-import Card from '../components/Card'; //
-import OracionesMain from '../pantallas/OracionesMain';
-import GenerarOraciones from './GenerarOraciones';
+import Card from '../../src/componentes/Card'; //
+import OracionesMain from './OracionesMain';
+//import GenerarOraciones from './GenerarOraciones';
 //import PlantillaOracion from './PlantillaOracion';
 
 
@@ -11,18 +11,15 @@ let data  = require('../data/oracionesMain.json');
 
 
 
-const OracionesFeed = ( { navigation } ) => {
+const OracionesFeed = (  ) => {
    /// console.log(navigation)
 
     return (
         <View>
             <View>
-                <View style={{ backgroundColor:"white" }}>
-                
-                <GenerarOraciones
-                titulo="Oraciones Populares"
-                navigation={navigation}
-                />
+                <View>
+                    <Text style={{ fontSize: 22, fontWeight: "bold", margin: 7, textAlign: "left"}}>Oraciones Populares</Text>
+            
                 </View>
                 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -32,7 +29,7 @@ const OracionesFeed = ( { navigation } ) => {
                             return (
                                 <View key={index}>
                                     
-                                    <Card  imageUrl={oracion.uri} title={oracion.title} navigation={navigation}/>
+                                    <Card  imageUrl={oracion.uri} title={oracion.title}/>
                                 </View>
                             );
                         })
@@ -43,7 +40,7 @@ const OracionesFeed = ( { navigation } ) => {
             </View>
 
             <OracionesMain
-             navigation={navigation}
+             //navigation={navigation}
             />
            
             

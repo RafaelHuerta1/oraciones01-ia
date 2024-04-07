@@ -7,15 +7,11 @@ import { TouchableOpacity } from 'react-native';
 
 
 
-function GenerarOraciones({titulo, navigation}) {
+function GenerarOraciones({titulo}) {
    //console.log(navigation)
     return (
         <View style={styles.containerGenerarOracion}>
-            <TouchableOpacity style={styles.btnGenerarOracion} onPress={() => navigation.navigate("Orar") }> 
-            
-            <Text style={styles.txtMain}> {titulo} </Text>
-            </TouchableOpacity>
-        </View>
+                   </View>
     );
 }
 

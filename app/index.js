@@ -1,6 +1,6 @@
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
-import Welcome from '../src/pantallas/Welcome';
+import Welcome from './pantallas/Welcome';
 //import ButtonPer from "../src/componentes/ButtonPer";
 
 //import { Router } from 'expo-next-react-navigation';
@@ -28,7 +28,7 @@ export default function index() {
           
           <Link  href="/signUp" asChild >
             <TouchableOpacity style={styles.containerMainBtnsWelcome} >
-              <Text style={styles.btnMain} >Crear Cuenta</Text>
+              <Text style={styles.btnCreateCuenta} >Crear Cuenta</Text>
             </TouchableOpacity>
           </Link>
       </View>    
@@ -46,13 +46,25 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 270,
     alignItems: 'center',
-    margin: 10,
     color: 'white',
     fontSize: 20,
     fontWeight: '400',
+    textAlign: 'center',
+  },
+  btnCreateCuenta: {
+    backgroundColor: '#00B4D8',
+    padding: 10,
+    borderRadius: 10,
+    width: 270,
+    alignItems: 'center',
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '400',
+    textAlign: 'center',
+    marginTop: 10,
   },
   containerMainBtnsWelcome: {
-    marginBottom: 10,
+    marginTop: 17,
     justifyContent: 'center',
     alignItems: 'center',
   },
