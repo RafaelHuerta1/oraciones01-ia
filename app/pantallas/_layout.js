@@ -19,9 +19,14 @@ export default function TabLayout() {
     */
     >
     {/* Optionally configure static options outside the route. */}
-    <Stack.Screen name="Home" options={{}} />
-    <Stack.Screen name="Plantilla" options={{}} />
-    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    <Stack.Screen name="Plantilla" options={{
+      headerTitle: 'Espacio de Oración',
+      headerTitleAlign: 'start',
+    }} />
+    <Stack.Screen name="MisOraciones" options={{
+      headerTitle: 'Mis Oraciones',
+      headerTitleAlign: 'start',
+    }} />
 
   </Stack>
   );

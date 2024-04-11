@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import MisOraciones from '../(tabs)/MisOraciones';
 //import { Text } from 'react-native';
 //import { Modal, View, Text, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 //export  let oracionesCreadas = [];
 import { getDatabase, ref, push } from "firebase/database";
@@ -14,6 +13,7 @@ import { getAuth } from "firebase/auth";
 import firebaseConfig from '../../src/firebase';
 import { initializeApp } from 'firebase/app';
 //import { Alert } from 'react-native';
+import { useNavigation } from 'expo-router';
 
 const app = initializeApp(firebaseConfig);
 
@@ -71,7 +71,8 @@ console.log(uid);
           Alert.alert('Oración enviada con éxito, puedes verla en Mis Oraciones');
           navigation.navigate('MisOraciones', { oracionesCreadas });
         }, 2000);*/
-       navigation.navigate('MisOraciones', { oracionesCreadas });
+       //navigation.navigate('MisOraciones', { oracionesCreadas });
+       //<MisOraciones oracionesCreadas />
       }, [oracionesCreadas]);
     
       // Navega a la pantalla "Mis Oraciones" y pasa las propiedades

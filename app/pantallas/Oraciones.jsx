@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView,  } from 'react-native';
-import Card from '../../src/componentes/Card'; //
+import Card from '../componentes/Card'; //
 import OracionesMain from './OracionesMain';
 //import GenerarOraciones from './GenerarOraciones';
 //import PlantillaOracion from './PlantillaOracion';

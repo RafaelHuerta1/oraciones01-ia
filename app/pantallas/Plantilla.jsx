@@ -2,7 +2,10 @@ import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button} from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import CreateOracion from './CrearOracion';
-import { Stack, router } from 'expo-router';
+import { Stack, router, Link } from 'expo-router';
+import ModalInfo from "../componentes/ModalInf";
+
+
 
 //console.log(CreateOracion);
 
@@ -13,7 +16,9 @@ function PlantillaOracion() {
     const [selectedName, setSelectName] = React.useState('');
     const [selectedValueVisibilidad, setSelectedValueVisibilidad] = React.useState(false); // oracion publica o privada
     const [oracionInfo, setOracionInfo] = React.useState(null);
-
+    const [modalVisible, setModalVisible] = React.useState(false);
+    
+    console.log(modalVisible);
 
     const options = [
         { label: 'Padre Nuestro', value: 'padre nuestro' },
@@ -39,10 +44,16 @@ function PlantillaOracion() {
     // crear una funcion para crear la oracion con la api de openai, y enviarla a la base de datos
     const orar = () => {
         //setOracionInfo({ valorName: selectedName, valorOracion: selectedValue, navigation: navigation });
-        
+        if(selectedName === '' || selectedName === null || selectedName === undefined) {
+            Alert.alert('Por favor, ingrese el nombre de su ser querido');
+            return;
+        }
         try {
             setOracionInfo({ valorName: selectedName, valorOracion: selectedValue});
-            Alert.alert('Oracion enviada con exito');
+            //Alert.alert('Listo oracion enviada', selectedName);
+           setModalVisible(true);   
+
+            // router.push('/(tabs)/MisOraciones');
         } catch (error) {
             console.log(error);
             Alert.alert('Error al enviar la oracion');
@@ -60,17 +71,7 @@ function PlantillaOracion() {
         <View>
             <View>
 
-            <Stack.Screen
-              options={{
-                headerTitle: 'Ora por su ser querido',
-                headerTitleAlign: 'start',
-                /*
-                headerRight:  () => (
-                <Button onPress={Alert.alert("Cerrar sesión")} title="Cerrar sesión"  />
-                ),
-                */
-              }}
-              /> 
+           
 
 
                 <Text style={styles.txtMainPlantilla}>Pide por tu ser querido</Text>
@@ -138,8 +139,10 @@ function PlantillaOracion() {
             </View>
             <View>
                 {oracionInfo && <CreateOracion {...oracionInfo} />}
-
+                {modalVisible && <ModalInfo modalVisible={modalVisible} setModalVisible={setModalVisible} />}
             </View>
+           
+          
         </View>
 
 

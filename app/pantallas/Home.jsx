@@ -37,6 +37,7 @@ export default function HomeScreen() {
                 ),
               }}
               /> 
+              
       <OracionesFeed />
     </View>
   );

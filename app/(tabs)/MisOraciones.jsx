@@ -3,13 +3,15 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'rea
 //import { reproducirOracion } from '../logic/reproducirOracion';
 //import  { oracionesCreadas } from "../logic/createOracion";
 //import { Audio } from 'expo-av';
+import { Stack, router } from 'expo-router';
 
 //console.log(oracionesCreadas)
-function MisOraciones({ route }) {
+function MisOraciones({ oraciones }) {
+    console.log(oraciones);
     //const { oracionesCreadas } = route.params;
-   // const [sound, setSound] = useState();
+    // const [sound, setSound] = useState();
 
-    const oracionesCreadas = route.params ? route.params.oracionesCreadas : [];
+    // const oracionesCreadas = route.params ? route.params.oracionesCreadas : [];
     //console.log(oracionesCreadas);
     //    console.log(oracionesCreadas);
     //console.log(setOracionesCreadas);
@@ -58,6 +60,9 @@ function MisOraciones({ route }) {
     const createCard = (oracion, index) => {
         return (
             <View key={index} style={styles.containerCard}>
+
+    
+
                 <TouchableOpacity
 
                     onPress={eliminarOracion}
@@ -96,15 +101,22 @@ function MisOraciones({ route }) {
 
     return (
 
-        oracionesCreadas === undefined ?
-            <View><Text style={styles.infoCard}>No hay oraciones creadas</Text></View>
-            :
-            <ScrollView style={styles.containerMainCard}>
-                {oracionesCreadas.map((oracion, index) => {
-                    return createCard(oracion, index);
-                })}
-            </ScrollView>
 
+
+
+        oraciones === undefined ?
+              <View style={styles.containerInfoCard}>
+                <Text style={styles.infoCard}>No hay oraciones creadas</Text>
+              </View>
+            :
+            <View>
+              <ScrollView style={styles.containerMainCard}>
+                {oraciones.map((oracion, index) => {
+                  return createCard(oracion, index);
+                })}
+              </ScrollView>
+            </View>
+          
 
     );
 }
@@ -120,11 +132,24 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 100,
     },
+    containerInfoCard: {
+        flex: 1,
+        backgroundColor: 'white',
+        padding: 12,
+        //S marginTop: 40,
+        width: '100%',
+        height: 50,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     infoCard: {
         fontSize: 20,
         fontWeight: '400',
         textAlign: 'center',
-        margin: 20,
+        padding: 11,
+        fontWeight: 'bold',
+
     },
     containerCard: {
         borderBlockColor: 'gray',
