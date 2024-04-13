@@ -24,7 +24,7 @@ export default function TabLayout() {
     <Stack.Screen name="Plantilla" options={{
       headerTitle: 'Espacio de Oración',
       headerTitleAlign: 'center',
-      //headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/pantallas/Home') }} />,
+      headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/pantallas/Home') }} />,
     }} />
 
         <Stack.Screen name="InfoOracion" options={{

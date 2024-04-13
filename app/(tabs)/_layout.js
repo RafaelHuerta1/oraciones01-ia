@@ -11,6 +11,7 @@ import MisOraciones from './MisOraciones';
  * perfil tab layout
  * @returns 
  */
+import { router } from "expo-router";
 
 
 export default function TabLayout() {
@@ -18,13 +19,28 @@ export default function TabLayout() {
     <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
       <Tabs.Screen
         name="MisOraciones"
-       //component={MisOraciones}
+        //component={MisOraciones}
         options={{
           title: 'Mis Oraciones ',
           headerTitleAlign: 'center',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="book" color={color} />,
+          headerLeft: () => ( 
+            <FontAwesome.Button
+              size={20}
+              name="arrow-left"
+              backgroundColor="#3b5998"
+              onPress={() => { router.push('/pantallas/Plantilla') }}
+              style={{
+                // Aquí puedes agregar tus estilos personalizados
+                margin: 1,
+                padding: 10,
+                
+                // etc.
+              }}
+            />
+          ),
         }}
-       initialParams={{ oracionesCreadas: [] }}
+        initialParams={{ oracionesCreadas: [] }}
 
       />
       <Tabs.Screen
@@ -35,7 +51,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="users" color={color} />,
         }}
       />
-      
+
       <Tabs.Screen
         name="Perfil"
         //component={Perfil}

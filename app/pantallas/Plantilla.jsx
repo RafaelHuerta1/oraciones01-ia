@@ -81,7 +81,7 @@ function PlantillaOracion() {
 
 
 
-                <Text style={styles.txtMainPlantilla}>Pide por tu ser querido</Text>
+                <Text style={styles.txtMainPlantilla}>Ora por tu ser querido</Text>
 
                 <View style={styles.containerValuesMain}>
                     <Text
@@ -115,6 +115,7 @@ function PlantillaOracion() {
                     
                   
 
+                    <View  style={styles.containerBtns}>
                     <TouchableOpacity
                         onPress={orar}
                         style={{ backgroundColor: '#03045E', marginTop: 35, padding: 10, borderRadius: 10 }}>
@@ -127,6 +128,15 @@ function PlantillaOracion() {
                         style={{ backgroundColor: '#0077B6', marginTop: 15, padding: 10, borderRadius: 10 }}>
                         <Text style={{ color: 'white', textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}>Orar por otro ser Querido</Text>
                     </TouchableOpacity>
+                    <Link  href="/(tabs)/MisOraciones" asChild>
+                                <TouchableOpacity
+                                
+                                style={{ backgroundColor: '#00B4D8', marginTop: 15, padding: 10, borderRadius: 10 }}>
+                                <Text style={{ color: 'white', textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}>Ver mis Oraciones</Text>
+                            </TouchableOpacity>
+                    </Link>
+                    </View>        
+              
 
                 </View>
 
@@ -156,13 +166,16 @@ export default PlantillaOracion;
 
 const styles = StyleSheet.create({
     txtMainPlantilla: {
-        fontSize: 30,
-        fontWeight: 'bold',
+        fontSize: 33,
+        fontWeight: '500',
         textAlign: 'center',
-        marginTop: 70,
+        marginTop: 100,
+        color: '#03045E',
     },
     containerValuesMain: {
         margin: 10,
     },
-
+    containerBtns: {
+        marginBottom: 40,
+    },
 });
