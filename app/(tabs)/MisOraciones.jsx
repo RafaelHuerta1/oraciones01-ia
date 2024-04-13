@@ -1,188 +1,157 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect }  from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-//import { reproducirOracion } from '../logic/reproducirOracion';
-//import  { oracionesCreadas } from "../logic/createOracion";
-//import { Audio } from 'expo-av';
-import { Stack, router } from 'expo-router';
+
+import { router } from "expo-router";
+import { getDatabase, ref, onValue} from "firebase/database";
+import { getAuth } from "firebase/auth";
+import firebaseConfig from '../../src/firebase';
+import { initializeApp } from 'firebase/app';
+
+
+const app = initializeApp(firebaseConfig);
+
+app;
 
 //console.log(oracionesCreadas)
-function MisOraciones({ oraciones }) {
-    console.log(oraciones);
-    //const { oracionesCreadas } = route.params;
-    // const [sound, setSound] = useState();
+export default function MisOraciones( ) {
+   
 
-    // const oracionesCreadas = route.params ? route.params.oracionesCreadas : [];
-    //console.log(oracionesCreadas);
-    //    console.log(oracionesCreadas);
-    //console.log(setOracionesCreadas);
-    //  console.log('Estoy en oracionesCreadas:', oracionesCreadas);
-    /*
-    async function playTextAsAudio() {
-        try {
-            const XI_API_KEY = "5de65ebd0a5267b4659bb99ce38297a1";
-            const VOICE_ID = "21m00Tcm4TlvDq8ikWAM";
-            const TEXT_TO_SPEAK = "Hola, este es un texto de prueba...";
+    const [nombres, setNombres] = useState([]);
+    const [oracionesName, setOracionesName] = useState([]);
+    const [allData, setAllData] = useState([]);
 
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'xi-api-key': XI_API_KEY
-                },
-                body: JSON.stringify({
-                    "model_id": "eleven_multilingual_v2",
-                    "text": TEXT_TO_SPEAK,
-                    "voice_settings": {
-                        "similarity_boost": 0.8,
-                        "stability": 0.5,
-                        "style": 0.0,
-                        "use_speaker_boost": true
-                    }
-                })
-            };
+    const db = getDatabase();
 
-            fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, options)
-                .then(response => response.json())
-                .then(response => console.log(response))
-                .catch(err => console.error(err));
-        } catch (error) {
-            console.log("Error: " + error.message);
-        }
+    useEffect(() => {
+
+      const uid = getAuth().currentUser.uid;
+      const oracionesRef = ref(db, "users/" + uid + "/oraciones");
+  
+      // Escucha los cambios en la referencia de las oraciones
+      const unsubscribe = onValue(oracionesRef, (snapshot) => {
+        const data = snapshot.val();
+        //console.log('DATA; ',data);
+        // Extrae todos los nombres de las oraciones
+        const nombresOraciones = Object.values(data).map(oracion => oracion.nombre);
+
+        const oraciones = Object.values(data).map(oracion => oracion.oracion);
+
+        // Actualiza el estado con los nuevos nombres
+        setNombres(nombresOraciones);
+        setOracionesName(oraciones);
+      //  setAllData([...nombresOraciones, ...oraciones]);
+      setAllData(nombresOraciones.map((nombre, index) => ({ index, nombres: nombre, oracionesName: oraciones[index] }))); // EST
+    });
+  
+      // Limpia la suscripción al desmontar el componente
+      return () => unsubscribe();
+    }, []);
+
+
+    /** verMas router nav a new page,  */
+    const verMas = () => {
+        router.push('/pantallas/InfoOracion', oracion= {nombres});
     }
 
-*/
 
-    const eliminarOracion = () => {
-        console.log('Eliminando oracion');
-        //setOracionesCreadas(nuevasOraciones);
-    }
-
-    const createCard = (oracion, index) => {
+    const createCard = (index, nombres, oracionesName)  => {
         return (
             <View key={index} style={styles.containerCard}>
 
-    
-
-                <TouchableOpacity
-
-                    onPress={eliminarOracion}
-                    style={styles.btnEliminarOracion}
-                >
-                    <Text
-                        style={styles.txtMain}
-
-                    >Eliminar Oracion</Text>
-                </TouchableOpacity>
-
-                <Text style={styles.infoCard}>{oracion}</Text>
-                <View style={styles.containerbtnsCard}>
-                    <TouchableOpacity
-                        style={styles.btnEscucharOracion}
-                        onPress={playTextAsAudio}
-                    >
-                        <Text
-                            style={styles.txtMain}
-                        >Reproducir Oracion</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-
-                        style={styles.btnCompartirOracion}
-
-                    >
-                        <Text style={styles.txtMain}
-                        >Pausar Oracion</Text>
-
-                    </TouchableOpacity>
+                <View style={styles.containerOracionName} >
+                    <Text style={styles.txtMain}>Esta oracion es para: </Text>
+                    <Text style={styles.txtMain}> {nombres} </Text>
                 </View>
+
+                <View style={styles.containerOracion}>
+                    <Text style={styles.txtMain}>Oracion: </Text>
+                    <Text style={styles.txtMain}> {oracionesName}</Text>
+                </View>
+
+                <View style={styles.containerOracion}>
+                    <TouchableOpacity onPress={verMas}>
+                        <Text style={styles.txtVerMas}>Ver mas</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.txtVerMas}>Eliminar Oracion.</Text>
+
+                </View>
+
             </View>
         );
     }
 
+  
+        
+      
+
+
+
 
     return (
 
-
-
-
-        oraciones === undefined ?
-              <View style={styles.containerInfoCard}>
-                <Text style={styles.infoCard}>No hay oraciones creadas</Text>
-              </View>
-            :
+    
+        db === null || nombres === null || oracionesName === null  ?
             <View>
-              <ScrollView style={styles.containerMainCard}>
-                {oraciones.map((oracion, index) => {
-                  return createCard(oracion, index);
-                })}
-              </ScrollView>
+              <Text style={styles.infoCard}>No hay oraciones creadas</Text>
             </View>
-          
+          :
+          <View>
+            <ScrollView >
+                {allData.map(( {index, nombres , oracionesName} ) => {
+                    return createCard(index, nombres, oracionesName);
+                })}
+            </ScrollView>
+          </View>
+      
+
+
+
+
+
 
     );
 }
 
-export default MisOraciones;
 
 const styles = StyleSheet.create({
-    containerMainCard: {
-        flex: 1,
-        backgroundColor: 'white',
-        padding: 12,
-        marginTop: 40,
-        width: '100%',
-        height: 100,
-    },
-    containerInfoCard: {
-        flex: 1,
-        backgroundColor: 'white',
-        padding: 12,
-        //S marginTop: 40,
-        width: '100%',
-        height: 50,
-        borderRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    infoCard: {
-        fontSize: 20,
-        fontWeight: '400',
-        textAlign: 'center',
-        padding: 11,
-        fontWeight: 'bold',
 
-    },
-    containerCard: {
-        borderBlockColor: 'gray',
+    containerCard   : {
+        backgroundColor: 'white',
+        padding: 25,
+        margin: 10,
+        borderRadius: 25,
         borderWidth: 1,
-        borderRadius: 20,
-        padding: 7,
-        marginBottom: 45,
-    },
-    containerbtnsCard: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-    },
-    btnEliminarOracion: {
-        backgroundColor: '#03045E',
-        padding: 12,
-        borderRadius: 12,
-    },
-    btnEscucharOracion: {
-        backgroundColor: '#0077B6',
-        padding: 12,
-        borderRadius: 12,
-
-    },
-    btnCompartirOracion: {
-        backgroundColor: '#00B4D8',
-        padding: 12,
-        borderRadius: 12,
+        borderColor: 'grey',
     },
     txtMain: {
         fontSize: 17,
         fontWeight: '400',
         textAlign: 'center',
         margin: 0,
-        color: 'white',
+        color: 'black',
     },
+
+
+
+    containerOracionName: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+
+    containerOracion: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 15,
+    },
+    txtVerMas: {
+        fontSize: 15,
+        fontWeight: '400',
+        textAlign: 'center',
+        margin: 0,
+        color: 'blue',
+    },
+
 });

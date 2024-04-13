@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 //import { useNavigation } from '@react-navigation/native';
 
  
-const Card = ({title, navigation}) => {
+const Card = ({title}) => {
     //console.log(title)
 
     return (
         <View style={styles.card}>
             <TouchableOpacity 
-           onPress={ () => navigation.navigate("Orar")}
+          // onPress={ () => navigation.navigate("Orar")}
             style={styles.containerCardMain}
             
             >
@@ -33,14 +33,12 @@ const styles = {
         borderRadius: 20,
         borderColor: 'black',
         borderWidth: 1,
-        width: 300,
-        height: 100,
-        minWidth: 100,
-        maxWidth: 200,
-        minHeight: 100,
-        maxHeight: 200,
+        width: 160,
+        height: 200,
+       // padding: 10,
         margin: 10,
-        overflow: 'hidden',        
+        overflow: 'hidden',  
+      
     },
     containerCardMain: {
         flex: 1,
@@ -58,10 +56,20 @@ const styles = {
     title: {
         color: 'black',
         opacity: 1,
-        fontSize: 16,
+        fontSize: 22,
         fontWeight: '400',
         textAlign: 'center',
-        margin: 10,
+        fontWeight: '400',
+        //marginTop: 50,
+    },
+    imgCard: {
+        width: 100,
+        height: 100,
+        //borderRadius: 25,
+        alignSelf: 'center',
+
+        //margin: 10,
+        
     },
     
 };

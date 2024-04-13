@@ -3,7 +3,7 @@ import React from 'react';
 import { router } from "expo-router";
 
 export default function ModalInfo({ modalVisible, setModalVisible }) {
-    console.log(modalVisible);
+    //console.log(modalVisible);
 
     const inPage = () => {
         setModalVisible(false);

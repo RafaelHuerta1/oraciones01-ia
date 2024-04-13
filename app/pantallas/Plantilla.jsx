@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button} from "react-native";
+import React, {useEffect} from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import CreateOracion from './CrearOracion';
 import { Stack, router, Link } from 'expo-router';
@@ -14,11 +14,14 @@ function PlantillaOracion() {
 
     const [selectedValue, setSelectedValue] = React.useState('padre nuestro'); // oraciones
     const [selectedName, setSelectName] = React.useState('');
-    const [selectedValueVisibilidad, setSelectedValueVisibilidad] = React.useState(false); // oracion publica o privada
+   // const [selectedValueVisibilidad, setSelectedValueVisibilidad] = React.useState(false); // oracion publica o privada
     const [oracionInfo, setOracionInfo] = React.useState(null);
     const [modalVisible, setModalVisible] = React.useState(false);
-    
-    console.log(modalVisible);
+
+
+
+    // console.log(  { valorName, valorOracion } = oracionInfo  );
+    //console.log('Oracion info: ', oracionInfo.valorName, oracionInfo.valorOracion)
 
     const options = [
         { label: 'Padre Nuestro', value: 'padre nuestro' },
@@ -44,34 +47,38 @@ function PlantillaOracion() {
     // crear una funcion para crear la oracion con la api de openai, y enviarla a la base de datos
     const orar = () => {
         //setOracionInfo({ valorName: selectedName, valorOracion: selectedValue, navigation: navigation });
-        if(selectedName === '' || selectedName === null || selectedName === undefined) {
+        if (selectedName === '' || selectedName === null || selectedName === undefined) {
             Alert.alert('Por favor, ingrese el nombre de su ser querido');
             return;
         }
         try {
-            setOracionInfo({ valorName: selectedName, valorOracion: selectedValue});
+            setOracionInfo({ valorName: selectedName, valorOracion: selectedValue });
+           // router.push('/pantallas/CrearOracion', { valorName: selectedName, valorOracion: selectedValue });
+            // console.log('Oracion info: ', oracionInfo.valorName, oracionInfo.valorOracion);
             //Alert.alert('Listo oracion enviada', selectedName);
-           setModalVisible(true);   
+            setModalVisible(true);
 
             // router.push('/(tabs)/MisOraciones');
         } catch (error) {
             console.log(error);
             Alert.alert('Error al enviar la oracion');
         }
-    
+
     }
 
     const borrarCampos = () => {
         console.log('Borrando campos...');
         setSelectName('')
     }
+    
 
+    
 
     return (
         <View>
             <View>
 
-           
+
 
 
                 <Text style={styles.txtMainPlantilla}>Pide por tu ser querido</Text>
@@ -79,7 +86,9 @@ function PlantillaOracion() {
                 <View style={styles.containerValuesMain}>
                     <Text
                         style={{ marginLeft: 15, marginTop: 15, textDecorationStyle: 'solid', textDecorationColor: 'black', fontSize: 20, fontWeight: '400' }}
-                    >Nombre de tu ser querido:</Text>
+                    >
+                        Nombre de tu ser querido:
+                    </Text>
                     <TextInput
                         style={{ width: '100%', height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 15, padding: 10, height: 50 }}
                         placeholder="Nombre de tu ser querido"
@@ -103,22 +112,8 @@ function PlantillaOracion() {
                         </Picker>
 
                     </View>
-                    <Text
-                        style={{ marginTop: 12, marginLeft: 10, textDecorationStyle: 'solid', fontSize: 20, fontWeight: '400' }}
-                    >Quieres que mas personas oren por tus plegarias.. Enviar a la RED</Text>
-                    <View style={{ borderColor: 'gray', borderWidth: 1, padding: 0, marginTop: 10 }}>
-
-                        <Picker
-                            selectedValue={selectedValueVisibilidad}
-                            onValueChange={(itemValue) => setSelectedValueVisibilidad(itemValue)}
-                            style={{ marginTop: 0, borderColor: 'gray', borderWidth: 1, width: '100%', height: 'auto' }}
-                        >
-
-                            {options2.map((option) => (
-                                <Picker.Item label={option.label} value={option.value} key={option.value} />
-                            ))}
-                        </Picker>
-                    </View>
+                    
+                  
 
                     <TouchableOpacity
                         onPress={orar}
@@ -138,18 +133,23 @@ function PlantillaOracion() {
 
             </View>
             <View>
-                {oracionInfo && <CreateOracion {...oracionInfo} />}
-                {modalVisible && <ModalInfo modalVisible={modalVisible} setModalVisible={setModalVisible} />}
+                <ModalInfo modalVisible={modalVisible} setModalVisible={setModalVisible} />
+                {oracionInfo && <CreateOracion oracionInfo={oracionInfo} />}
+       
+
             </View>
-           
-          
+    
+
         </View>
 
-
+                            
 
 
 
     );
+
+
+
 }
 
 export default PlantillaOracion;

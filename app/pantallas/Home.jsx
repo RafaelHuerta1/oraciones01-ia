@@ -45,5 +45,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
- 
+  mainContainerHome: {
+      marginTop: 10,
+  },
 });

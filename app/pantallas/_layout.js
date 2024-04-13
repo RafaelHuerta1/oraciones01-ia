@@ -1,6 +1,8 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Stack } from 'expo-router';
+import MisOraciones from '../(tabs)/MisOraciones';
+import { router } from "expo-router";
 
 export default function TabLayout() {
   return (
@@ -21,13 +23,17 @@ export default function TabLayout() {
     {/* Optionally configure static options outside the route. */}
     <Stack.Screen name="Plantilla" options={{
       headerTitle: 'Espacio de Oración',
-      headerTitleAlign: 'start',
-    }} />
-    <Stack.Screen name="MisOraciones" options={{
-      headerTitle: 'Mis Oraciones',
-      headerTitleAlign: 'start',
+      headerTitleAlign: 'center',
+      //headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/pantallas/Home') }} />,
     }} />
 
+        <Stack.Screen name="InfoOracion" options={{
+      headerTitle: 'Oracion Completa',
+     // component: MisOraciones,
+      headerTitleAlign: 'center',
+     // tabBarIcon: ({ color }) => <FontAwesome size={30} name="book" color={color} />,
+      headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/(tabs)/MisOraciones') }} />,
+    }} />
   </Stack>
   );
 }
