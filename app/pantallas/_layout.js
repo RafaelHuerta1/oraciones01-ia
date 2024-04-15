@@ -26,7 +26,6 @@ export default function TabLayout() {
       headerTitleAlign: 'center',
       headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/pantallas/Home') }} />,
     }} />
-
         <Stack.Screen name="InfoOracion" options={{
       headerTitle: 'Oracion Completa',
      // component: MisOraciones,

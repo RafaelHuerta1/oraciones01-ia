@@ -34,7 +34,7 @@ function signUp() {
         router.push('/signIn');
     }
 
-
+    // al crear la cuenta se crea la referencia con el nombre del usuario y se almacena en la base de datos
     function almacenarUsuarioDb(uid, name, email) {
         console.log('Almacenando usuario en la base de datos...', name , email)
         const reference = ref(db, "users/" + uid);

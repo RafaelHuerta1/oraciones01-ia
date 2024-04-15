@@ -14,6 +14,8 @@ import { initializeApp } from 'firebase/app';
 //import { Alert } from 'react-native';
 import { useNavigation, router } from 'expo-router';
 import MisOraciones from '../(tabs)/MisOraciones';
+import ModalInfo from '../componentes/ModalInf';
+import React from 'react';
 
 const app = initializeApp(firebaseConfig);
 
@@ -26,39 +28,40 @@ export default function CreateOracion({oracionInfo} ) {
 
  console.log('Si se pasan los valores a create oracion!', oracionInfo );
   
-  //const [oracionesCreadas, setOracionesCreadas] = useState([]);
- /* 
-  const [valorName, setValorName] = useState([]);
-  const [valorOracion, setValorOracion] = useState([]);
-  */
 
- // console.log(valorName, valorOracion);
   const { valorName, valorOracion } = oracionInfo;
  console.log('Valor name: ', valorName, 'Valor oracion: ', valorOracion);
 
  const [oracionesCreadas, setOracionesCreadas] = useState([]);
   //const [isTrue, setIsTrue] = useState(false); 
 
+  const [modalVisible, setModalVisible] = useState(false);
 
- 
+  console.log('MODAL VISIBLE:  ', modalVisible);
 
   function almacenarOracionUsuario(oracionesCreadas,  valorName, valorOracion) {
     const db = getDatabase();
     const uid = getAuth().currentUser.uid;
-
+   const nombre2 = valorName;
     //console.log(uid);
-    const reference = ref(db, "users/" + uid + "/oraciones");
+    // fc traer el userName
+    const userName = getAuth().currentUser.displayName;
+    console.log(userName);
+  const reference = ref(db, "users/" + uid + "/oraciones/" + nombre2 + '/userId/' );
     
-    console.log('Referencia: ', reference, 'Oraciones creadas: ', oracionesCreadas);
+   // console.log('Referencia: ', reference, 'Oraciones creadas: ', oracionesCreadas);
 
     const oracionData = {
-      oracionesCreadas: oracionesCreadas,
       nombre: valorName,
+      oracionesCreadas: oracionesCreadas,
       oracion: valorOracion
     };
   
     push(reference, oracionData);
-    
+
+
+
+
   }
 
 
@@ -76,7 +79,6 @@ export default function CreateOracion({oracionInfo} ) {
 
         setOracionesCreadas((prevOraciones) => [...prevOraciones, oracion]);
         console.log(valorName, valorOracion)
-
         //console.log('Array de oraciones.. ', oracionesCreadas);
         break;
       case 'ave maria':
@@ -95,22 +97,25 @@ export default function CreateOracion({oracionInfo} ) {
     }
 
    
-   // router.push('/(tabs)/MisOraciones', oracionesCreadas={ oracionesCreadas });
+
 
   }, [valorName, valorOracion]);
 
   useEffect(() => {
     if (oracionesCreadas.length > 0) {
       console.log('Oraciones creadas: ', oracionesCreadas);
+      
       almacenarOracionUsuario(oracionesCreadas, valorName, valorOracion);
     }
    // router.push('../(tabs)/MisOraciones', { oracionesCreadas: oracionesCreadas });
+
+   
   }, [oracionesCreadas]);
 
 
   //{ oracionesCreadas  ? <MisOraciones valorName={ valorName }  valorOracion={valorOracion}  /> : null  }  
 
 
-  return null;
+  return  null;
 }
 

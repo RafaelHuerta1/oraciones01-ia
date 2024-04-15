@@ -8,7 +8,7 @@ import firebaseConfig from '../../src/firebase';
 import { initializeApp } from 'firebase/app';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-import _layout from '../(tabs)/_layout';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export default function HomeScreen() {
  // console.log(navigation)
@@ -33,9 +33,10 @@ export default function HomeScreen() {
                 headerTitle: 'Ora por su ser querido',
                 headerTitleAlign: 'start',
                 headerRight:  () => (
-                <Button onPress={logout} title="Cerrar sesión"  />
-                ),
-              }}
+                  <Button onPress={logout} title="Cerrar sesión"  />
+                  ),
+               // headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/pantallas/Home') }} />,
+                }}
               /> 
               
       <OracionesFeed />
