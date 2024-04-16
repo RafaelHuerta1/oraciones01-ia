@@ -5,7 +5,7 @@ import { useLocalSearchParams } from "expo-router";
 
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { getAuth } from "firebase/auth";
-
+import ButtonPer from "../componentes/ButtonPer";
 
 
 export default function InfoOracion() {
@@ -19,10 +19,10 @@ export default function InfoOracion() {
   console.log('ORACION COMPLETA: ', oracionCompleta);
   */
   
-  const { id , oracionesCreadas} = useLocalSearchParams();
-  console.log(id);
+  const {oracionesCreadas, nombre} = useLocalSearchParams();
+ // console.log('id:: ',id);
   console.log(oracionesCreadas);
-
+/*
  const [nombres, setNombres] = useState([]);
   const [oracionesName, setOracionesName] = useState([]);
   const [OracionCompletaUsuario, setOracionCompletaUsuario] = useState([]);
@@ -58,7 +58,7 @@ export default function InfoOracion() {
          return () => unsubscribe();
   }, [id, oracionesCreadas]);
 
-
+*/
 
 
 
@@ -129,11 +129,21 @@ searchOracion(id);
    
       </View>
       <View>
-        <Text style={styles.txtInfoOracionMain}> Esta oracion es para: {id} </Text>
+        <Text style={styles.txtInfoOracionMain}> Esta oracion es para: {nombre} </Text>
        <ScrollView>
-        <Text style={styles.containerMainOracionCompleta}  >  {OracionCompletaUsuario} </Text>
+        <Text style={styles.containerMainOracionCompleta}  >  {oracionesCreadas} </Text>
        </ScrollView>
-  
+
+      <View
+        style={{ alignItems: 'center',flexDirection: 'row', justifyContent: 'space-around'}}
+
+      >
+        <ButtonPer text='Compartir Oracion'
+        color='#03045E'
+        />
+        
+      </View>
+
 
       </View>
     </View>

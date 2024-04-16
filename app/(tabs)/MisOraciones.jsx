@@ -19,8 +19,7 @@ export default function MisOraciones(    ) {
 
   
   // Acceder al parámetro selectedName
-  const { token } = useLocalSearchParams();
-  console.log(token); // eeror token udentificado, al navegar pantalals/InfoOracion y regresar a MisOraciones
+ 
 
    const [nombres, setNombres] = useState([]);
     const [oracionesName, setOracionesName] = useState([]);
@@ -28,78 +27,48 @@ export default function MisOraciones(    ) {
     const [oracionCompleta, setOracionCompleta] = useState([]);
     //const [oracionCompletaUsuario, setOracionCompletaUsuario] = useState([]);
     const db = getDatabase();
-    let todasLasOraciones = [];
+    const [allOraciones, setAllOraciones] = useState([]);
+
 
     // buscar el nodo en oraciones/ que conicida con el selectName  y traerlo de firebase
     const uid = getAuth().currentUser.uid;
-    const oracionesRef = ref(db, "users/" + uid + "/oraciones/" + token + '/userId/' );
+    const oracionesRef = ref(db, "users/" + uid + "/oraciones/"  );
    console.log('Oraciones ref 1: ', oracionesRef);
 
-    const referenceAllOraciones = ref(db, "users/" + uid );
-    console.log('Oraciones ref: ', referenceAllOraciones);
+   // const referenceAllOraciones = ref(db, "users/" + uid );
+    //console.log('Oraciones ref: ', referenceAllOraciones);
 
 
     useEffect(() => {
-
-        console.log('Entre  al useEfect');
-
-        // funciona, solo trae la informacion de la oracion en especifico
-        /*
         const unsubscribe = onValue(oracionesRef, (snapshot) => {
             const data = snapshot.val();
-            // console.log('DATA; ',data);
+            console.log('DATA: ', data);
             // Extrae todos los nombres de las oraciones
-
-
-            const nombresOraciones = Object.values(data).map(item => item.nombre);
-            const oraciones = Object.values(data).map(item => item.oracion);
-            const oracionCompletas = Object.values(data).map(item => item.oracionesCreadas);
+            
+            //const nombresOraciones = Object.values(data).map(item => item.nombre);
+            //const oraciones = Object.values(data).map(item => item.oracion);
+            //const oracionCompletas = Object.values(data).map(item => item.oracionesCreadas);
+            const allOraciones = Object.values(data).map(item => item);
+            console.log('All oraciones: ', allOraciones);
+            /*
             console.log('Nombres: ', nombresOraciones);
             console.log('Oraciones: ', oraciones);
-            console.log('Oraciones completas: ', oracionCompleta);
+            console.log('Oraciones completas: ', oracionCompletas);
             setNombres(nombresOraciones);
             setOracionesName(oraciones);
-            setOracionCompletaUsuario(oracionCompletas);
+            setOracionCompleta(oracionCompletas);
+            */
+                
+            setAllOraciones(allOraciones);
 
-            // Crea un array con los nombres y las oraciones
-           // allData.push({ index: index ,  nombres: nombresOraciones, oracionesName: oraciones, oracionCompleta: oracionCompleta });
-           //setAllData(nombresOraciones.map((nombre, index) => ({ index, nombres: nombre, oracionesName: oraciones[index] , oracionCompleta: oracionCompleta }))); // EST
+            console.log('All oraciones: ', allOraciones);
 
-            //console.log('All data: ', allData);
+         });
+         
+        return () => unsubscribe();
+}, []);
 
-        });
-  */
-        const unsubscribeAllOraciones = onValue(referenceAllOraciones, (snapshot) => {
-            const data = snapshot.val();
-            console.log('DATA: ', data);
-        
 
-            for (let oracion in data.oraciones) {
-                if (data.oraciones.hasOwnProperty(oracion)) {
-                    // Itera sobre cada objeto userId
-                    for (let key in data.oraciones[oracion].userId) {
-                        if (data.oraciones[oracion].userId.hasOwnProperty(key)) {
-                            // Añade la oración a todasLasOraciones
-                            
-                            todasLasOraciones.push({
-                                nombre: data.oraciones[oracion].userId[key].nombre,
-                                oracion: data.oraciones[oracion].userId[key].oracion,
-                                oracionesCreadas: data.oraciones[oracion].userId[key].oracionesCreadas
-                            });
-                            
-                          
-                        }
-                    }
-                }
-            }
-            setOracionCompleta(todasLasOraciones)
-           // console.log('Todas las oraciones: ', todasLasOraciones);
-        });
-            return () => { 
-              //  unsubscribe();
-                unsubscribeAllOraciones();
-            } 
-    }, [uid]);
 
 
       
@@ -116,13 +85,14 @@ export default function MisOraciones(    ) {
 
  */
        
-    const createCard = (index, nombres, oracion, oracionesCreadas)  => {
+    const createCard = (index, nombre, oracion, oracionesCreadas)  => {
+        //console.log('Nombres: ', nombres);
         return (
             <View key={index} style={styles.containerCard}>
 
                 <View style={styles.containerOracionName} >
                     <Text style={styles.txtMain}>Esta oracion es para: </Text>
-                    <Text style={styles.txtMain}> {nombres} </Text>
+                    <Text style={styles.txtMain}> {nombre} </Text>
                 </View>
 
                 <View style={styles.containerOracion}>
@@ -134,7 +104,7 @@ export default function MisOraciones(    ) {
                 <Link  
                  href={{
                     pathname: "/pantallas/InfoOracion",
-                    params: { id: token, oracionesCreadas: oracionesCreadas}
+                    params: {nombre: nombre ,    oracionesCreadas: oracionesCreadas}
                   }}
                   asChild
                   >
@@ -169,10 +139,11 @@ export default function MisOraciones(    ) {
           <View>
             <ScrollView >
                 
-                    {oracionCompleta.map((oracion, index) => 
-                    createCard(index, oracion.nombre, oracion.oracion, oracion.oracionesCreadas))
-                    
-                    }
+                {
+                    allOraciones.map((item, index) => {
+                        return createCard(index, item.nombre, item.oracion, item.oracionesCreadas);
+                    })
+                }
 
 
             </ScrollView>

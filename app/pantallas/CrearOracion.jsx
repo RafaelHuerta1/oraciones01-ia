@@ -42,12 +42,12 @@ export default function CreateOracion({oracionInfo} ) {
   function almacenarOracionUsuario(oracionesCreadas,  valorName, valorOracion) {
     const db = getDatabase();
     const uid = getAuth().currentUser.uid;
-   const nombre2 = valorName;
+   //const nombre2 = valorName;
     //console.log(uid);
     // fc traer el userName
     const userName = getAuth().currentUser.displayName;
     console.log(userName);
-  const reference = ref(db, "users/" + uid + "/oraciones/" + nombre2 + '/userId/' );
+  const reference = ref(db, "users/" + uid + "/oraciones/" );
     
    // console.log('Referencia: ', reference, 'Oraciones creadas: ', oracionesCreadas);
 
@@ -78,7 +78,7 @@ export default function CreateOracion({oracionInfo} ) {
           `Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén`;
 
         setOracionesCreadas((prevOraciones) => [...prevOraciones, oracion]);
-        console.log(valorName, valorOracion)
+        //console.log(valorName, valorOracion)
         //console.log('Array de oraciones.. ', oracionesCreadas);
         break;
       case 'ave maria':
@@ -87,7 +87,7 @@ export default function CreateOracion({oracionInfo} ) {
 
         setOracionesCreadas((prevOraciones) => [...prevOraciones, oracion]);
        // console.log('Array de oraciones.. ', oracionesCreadas);
-       console.log(valorName, valorOracion)
+       //console.log(valorName, valorOracion)
 
         break;
 

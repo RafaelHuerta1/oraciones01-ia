@@ -12,7 +12,7 @@ export default function ButtonPer(props) {
                         backgroundColor: props.color,
                         padding: 10,
                         borderRadius: 10,
-                        width: 270,
+                        width: 200,
                         alignItems: 'center',
                         margin: 10,
                     }}

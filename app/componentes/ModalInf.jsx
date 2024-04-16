@@ -2,10 +2,11 @@ import { View, Text, StyleSheet, Button, Modal } from "react-native";
 import React from 'react';
 import { router } from "expo-router";
 
-export default function ModalInfo({ modalVisible, setModalVisible , selectedName}) {
+export default function ModalInfo({ modalVisible, setModalVisible }) {
     console.log('Estoy en fc ModalInfo,, ',modalVisible);
     console.log('Estoy en fc ModalInfo,, ',setModalVisible);
-    console.log('NAME : ',selectedName); // SI PASAMOS EL NOMBRE DE LA PERSONA QUE ORAMOS
+   
+   // console.log('NAME : ',selectedName); // SI PASAMOS EL NOMBRE DE LA PERSONA QUE ORAMOS
 
     const inPage = () => {
         setModalVisible(false);
@@ -15,10 +16,11 @@ export default function ModalInfo({ modalVisible, setModalVisible , selectedName
         setModalVisible(false);
         router.push({
             pathname: "/(tabs)/MisOraciones",
+            /*
             params: {
               token: selectedName
             }
-            
+            */
          });
     }
 

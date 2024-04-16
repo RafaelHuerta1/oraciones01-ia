@@ -20,6 +20,7 @@ function PlantillaOracion() {
 
 
 
+
     // console.log(  { valorName, valorOracion } = oracionInfo  );
     //console.log('Oracion info: ', oracionInfo.valorName, oracionInfo.valorOracion)
 
@@ -145,7 +146,8 @@ function PlantillaOracion() {
             </View>
             <View>
                 <ModalInfo modalVisible={modalVisible} setModalVisible={setModalVisible} 
-                selectedName={selectedName}
+               
+               //selectedName={selectedName}
                 />
                 {oracionInfo && <CreateOracion oracionInfo={oracionInfo} />}
        
