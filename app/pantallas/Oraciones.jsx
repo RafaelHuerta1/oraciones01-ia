@@ -4,7 +4,7 @@ import Card from '../componentes/Card'; //
 import OracionesMain from './OracionesMain';
 //import GenerarOraciones from './GenerarOraciones';
 //import PlantillaOracion from './PlantillaOracion';
-
+import { Stack, router, Link } from 'expo-router';
 
 let data  = require('../data/oracionesMain.json');
 
@@ -28,8 +28,9 @@ const OracionesFeed = (  ) => {
                         data.oracionesMain.map((oracion, index) => {
                             return (
                                 <View key={index}>
-                                    
+                                    <Link href={{ screen: '/pantallas/Plantilla'}} asChild>
                                     <Card  imageUrl={oracion.uri} title={oracion.title}/>
+                                    </Link>
                                 </View>
                             );
                         })

@@ -21,6 +21,10 @@ function signUp() {
 
     const [modalVisible, setModalVisible] = React.useState(false);
     const [errorCredencial, setErrorCredencial] = React.useState(null);
+    const [usuarioLogeado, setUsuarioLogeado] = React.useState(null);
+   // const [errorMensaje, setErrorMensaje] = React.useState(null);
+
+   let errorMessage = '';
 
     const [value, setValue] = React.useState({
         email: '',
@@ -31,6 +35,9 @@ function signUp() {
 
     const onPress = () => { 
         signUp();
+       // router.push('/signIn');
+    }
+    const goLogin = () => {
         router.push('/signIn');
     }
 
@@ -52,8 +59,8 @@ function signUp() {
 
     async function signUp() {
         if (value.email === '' || value.password === '') {
-            console.log('El correo y la contraseña son obligatorios.');
-            setErrorCredencial('El correo y la contraseña son obligatorios.');
+            errorMessage = 'El correo y la contraseña son obligatorios.';
+            setErrorCredencial(errorMessage);
             setModalVisible(true);
         }
         else {
@@ -62,10 +69,13 @@ function signUp() {
                 const userCredencial = await createUserWithEmailAndPassword(auth, value.email, value.password);
                 console.log(userCredencial);
                 const user = userCredencial.user;
-                console.log('Usuario creado con éxito', user);
-                console.log('Usuario creado con éxito', user.uid);
-                console.log('Usuario creado con éxito', user.email);
-                console.log('Usuario creado con éxito', value.name);
+                setUsuarioLogeado(true)
+                console.log(usuarioLogeado)
+
+                //console.log('Usuario creado con éxito', user);
+               // console.log('Usuario creado con éxito', user.uid);
+                //console.log('Usuario creado con éxito', user.email);
+                //console.log('Usuario creado con éxito', value.name);
                 almacenarUsuarioDb(user.uid, value.name, user.email);  // Usa el UID del usuario como referencia
 
 
@@ -75,17 +85,24 @@ function signUp() {
                 let errorMessage = '';
                 if (error.code === 'auth/email-already-in-use') {
                     errorMessage = '¡Vaya! Este correo ya está asociado con otra cuenta. ¿Quieres iniciar sesión en su lugar?';
+                    {console.log('Correo ya en uso')}
                     setModalVisible(true);
                 } else if (error.code === 'auth/invalid-email') {
                     errorMessage = '¡Ups! Parece que el formato de tu correo no es válido. ¿Puedes verificarlo?';
+                    {console.log('Correo ya en uso 2')}
                     setModalVisible(true);
                 } else if (error.code === 'auth/weak-password') {
                     errorMessage = 'Tu contraseña parece ser un poco débil. ¿Podrías intentar con una contraseña más fuerte?';
+                    {console.log('Correo ya en uso 3')}
                     setModalVisible(true);
                 } else if (error.code === 'auth/operation-not-allowed') {
                     errorMessage = 'Lo siento, esta forma de autenticación no está habilitada. Por favor, contacta al soporte técnico.';
+                    setModalVisible(true);
+
                 } else {
                     errorMessage = 'Algo salió mal. Por favor, verifica tus datos y vuelve a intentarlo.';
+                    setModalVisible(true);
+                    {console.log('Correo ya en uso 4')}
                 }
                 return setErrorCredencial(errorMessage);
 
@@ -101,6 +118,7 @@ function signUp() {
         <View style={{ flex: 1, justifyContent: "center", alignContent: 'center', alignItems: "center", marginBottom: 100 }}>
 
             <Text style={styles.txtMain}>Crear Cuenta</Text>
+
 
             <Modal
         animationType="slide"
@@ -118,7 +136,28 @@ function signUp() {
                     </Button>
               </View>
             </View>
-      </Modal>
+            </Modal>
+
+            
+            <Modal
+        animationType="slide"
+        transparent={true}
+        visible={usuarioLogeado}
+      >
+        <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                <Text style={styles.modalText}> Felicidades Creaste tu cuenta! </Text>
+                    <Button
+                    title="Ir a Iniciar Sesion"
+                    style={styles.btnCerrarModal}
+                    onPress={goLogin}
+                      >
+                    </Button>
+              </View>
+            </View>
+            </Modal>
+
+
             <View style={styles.child}>
                 <TextInput
                     style={styles.input}
@@ -132,7 +171,7 @@ function signUp() {
                     onChangeText={(text) => setValue({ ...value, name: text })}
                     value={value.name}
                     placeholder="Ingresa su nombre de usuario."
-                    keyboardType="username"
+                    keyboardType="default"
                 />
                 <TextInput
                     style={styles.input}

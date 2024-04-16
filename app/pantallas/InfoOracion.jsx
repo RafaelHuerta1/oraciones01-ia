@@ -131,7 +131,9 @@ searchOracion(id);
       <View>
         <Text style={styles.txtInfoOracionMain}> Esta oracion es para: {nombre} </Text>
        <ScrollView>
-        <Text style={styles.containerMainOracionCompleta}  >  {oracionesCreadas} </Text>
+              <View  style={styles.containerMainOracionCompleta} >
+                  <Text style={styles.oracionCompleta}  >  {oracionesCreadas} </Text>
+              </View>
        </ScrollView>
 
       <View
@@ -155,23 +157,26 @@ searchOracion(id);
 
 const styles = StyleSheet.create({
   txtInfoOracionMain: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 23,
+    fontWeight: '500',
     textAlign: 'center',
     marginTop: 20,
   },
   txtInfoOracion: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: '300',
     textAlign: 'center',
     marginTop: 20,
     padding: 10,
   },
   containerMainOracionCompleta: {
+    marginTop: 12,
+    padding: 10,
+  },
+  oracionCompleta: {
     fontSize: 20,
     fontWeight: '300',
     textAlign: 'center',
-    marginTop: 20,
-    padding: 10,
+    
   },
 });
