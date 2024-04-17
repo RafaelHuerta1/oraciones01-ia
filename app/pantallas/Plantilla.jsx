@@ -130,7 +130,7 @@ function PlantillaOracion() {
                         <Text style={{ color: 'white', textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}>Orar por otro ser Querido</Text>
                     </TouchableOpacity>
                     
-                    <Link href={{ screen: '/(tabs)/MisOraciones' }} asChild>
+                    <Link href={'/(tabs)/MisOraciones'} asChild>
                                 <TouchableOpacity
                                 
                                 style={{ backgroundColor: '#00B4D8', marginTop: 15, padding: 10, borderRadius: 10 }}>

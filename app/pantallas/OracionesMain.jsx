@@ -4,6 +4,8 @@ import { View, Text,FlatList, StyleSheet, TouchableOpacity, ScrollView} from "re
 //import OracionesFeed from "../screens/Oraciones";
 //import GenerarOraciones from "../screens/GenerarOraciones";
 //import GenerarOraciones from "../screens/GenerarOraciones";
+
+
 const data = [
   { id: 1, title: 'Enfermos' }, // enfermos
   { id: 2, title: 'Agradecimiento' }, //
@@ -23,41 +25,38 @@ const Item = ({ title }) => (
 );
 
 const OracionesMain = () => {
-
-
-
-
   let numColumns = 2;
  const renderItem = ({ item }) => <Item title={item.title} />;
 
-//const goPlantillaOracion = () => {
-  
-
 return (
-  <TouchableOpacity onPress={ () => navigation.navigate("Orar") }>
-      <View style={styles.containerMainGrid}>
-        <FlatList
-        style={styles.cardList}
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-          key={numColumns}
-          numColumns={numColumns}
-          ListHeaderComponent={
-            <View>
-                          <Text style={{margin:7, fontSize:22, fontWeight:"300", }}>Puedes orar por alguna de las siguientes Intenciones.</Text>
+  <TouchableOpacity >
+   
+        <View style={styles.containerMainGrid}>
+            <FlatList
+            //  onPress={() => router.push('/pantallas/Plantilla')}
+             style={styles.cardList}
+              data={data}
+              renderItem={renderItem}
+              keyExtractor={item => item.id.toString()}
+              key={numColumns}
+              numColumns={numColumns}
+              ListHeaderComponent={
+                <View>
+                              <Text style={{margin:7, fontSize:22, fontWeight:"300", }}>Puedes orar por alguna de las siguientes Intenciones.</Text>
 
-            </View>
-          }
-          /> 
-          <Text >{""}</Text>
-          <Link href="/pantallas/Plantilla" asChild>
-          <TouchableOpacity  style={styles.containerBtnGenerate}>
-          <Text style={{margin:15, fontSize:21, fontWeight:"500", color:"white", textAlign:"center"  }}>Orar por su ser Querido</Text>
-          </TouchableOpacity>
-          </Link>
-        
-      </View>
+                </View>
+              }
+              /> 
+              <Text >{""}</Text>
+              <Link href="/pantallas/Plantilla" asChild>
+              <TouchableOpacity  style={styles.containerBtnGenerate}>
+              <Text style={{margin:15, fontSize:21, fontWeight:"500", color:"white", textAlign:"center"  }}>Orar por su ser Querido</Text>
+              </TouchableOpacity>
+              </Link>
+            
+          </View>
+
+
   </TouchableOpacity>
     
 );

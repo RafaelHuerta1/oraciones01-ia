@@ -14,7 +14,7 @@ export default function ButtonPer(props) {
                         borderRadius: 10,
                         width: 200,
                         alignItems: 'center',
-                        marginTop:40,
+                        marginTop:0,
                     }}
                 
                 >

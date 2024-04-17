@@ -171,12 +171,13 @@ const styles = StyleSheet.create({
   },
   containerMainOracionCompleta: {
     marginTop: 12,
-    padding: 10,
+    padding: 12,
   },
   oracionCompleta: {
-    fontSize: 20,
+    fontSize: 22,
+    lineHeight:35,
     fontWeight: '300',
-    textAlign: 'center',
+    textAlign: 'justify',
     
   },
 });

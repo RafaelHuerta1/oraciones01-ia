@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { Stack, router, Link } from 'expo-router';
 
 //import { useNavigation } from '@react-navigation/native';
 
@@ -9,7 +10,8 @@ const Card = ({title}) => {
 
     return (
         <View style={styles.card}>
-            <TouchableOpacity 
+           <Link href={'/pantallas/Plantilla'} asChild>
+           <TouchableOpacity 
           // onPress={ () => navigation.navigate("Orar")}
             style={styles.containerCardMain}
             
@@ -18,10 +20,10 @@ const Card = ({title}) => {
               <Text style={styles.title}>{title}</Text>
              
         
-
-          
-
             </TouchableOpacity>
+
+           </Link>
+ 
     
         </View>
     );
@@ -33,7 +35,7 @@ const styles = {
         borderRadius: 20,
         borderColor: 'black',
         borderWidth: 1,
-        width: 160,
+        width: 100,
         height: 200,
        // padding: 10,
         margin: 10,

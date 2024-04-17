@@ -28,9 +28,8 @@ const OracionesFeed = (  ) => {
                         data.oracionesMain.map((oracion, index) => {
                             return (
                                 <View key={index}>
-                                    <Link href={{ screen: '/pantallas/Plantilla'}} asChild>
+
                                     <Card  imageUrl={oracion.uri} title={oracion.title}/>
-                                    </Link>
                                 </View>
                             );
                         })
