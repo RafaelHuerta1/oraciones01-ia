@@ -64,7 +64,7 @@ export default function CreateOracion({ oracionInfo }) {
 
   }
 
-  /** agregar en case 
+  /** 
    *  - Credo de los apostoles
    *  - Salve reina
    *  - Gloria al padre
@@ -97,11 +97,8 @@ export default function CreateOracion({ oracionInfo }) {
         // mensajeDeAliento = `Recuerda,   ${valorName}  , que siempre estás en las manos de Dios y nunca estás solo. Él te guiará a través de estos tiempos difíciles.`;
 
         oracion = `Hoy, ${new Date().toLocaleDateString()}, nos reunimos en oración por ${valorName}. 
-        Sabemos que está pasando por problemas difíciles, por eso le ofrecemos la siguiente oración el ${valorOracion}. Ademas   
-        queremos elevar nuestras voces en su nombre.` +
-          `Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en 
-          la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a 
-          los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén... ,`;
+        Sabemos que está pasando por problemas difíciles, por eso le ofrecemos la siguiente oración el ${valorOracion}. Ademas queremos elevar nuestras voces en su nombre.` + `Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a 
+        los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén... ,`;
 
         setOracionesCreadas((prevOraciones) => [...prevOraciones, oracion]);
         //console.log(valorName, valorOracion)

@@ -124,27 +124,39 @@ searchOracion(id);
 
     <View>
       <View
-        style={{ alignItems: 'center' }}
+        //style={{ alignItems: 'center', height: 100, justifyContent: 'center', backgroundColor: '#03045E'}}
       >
    
       </View>
-      <View>
+      <View
+        style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20,}}
+      >
+      <ScrollView
+      showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} // oculta la barra de scroll
+      >
         <Text style={styles.txtInfoOracionMain}> Esta oracion es para: {nombre} </Text>
-       <ScrollView>
+
               <View  style={styles.containerMainOracionCompleta} >
                   <Text style={styles.oracionCompleta}  >  {oracionesCreadas} </Text>
               </View>
-       </ScrollView>
 
-      <View
-        style={{ alignItems: 'center',flexDirection: 'row', justifyContent: 'space-around'}}
+
+              <View
+        style={{ alignItems: 'center',flexDirection: 'row', justifyContent: 'space-around', padding: -1}}
 
       >
         <ButtonPer text='Compartir Oracion'
+        color='#0077B6'
+        />
+         <ButtonPer text='Enviar a la red'
         color='#03045E'
         />
         
       </View>
+
+       </ScrollView>
+
+    
 
 
       </View>
@@ -171,13 +183,18 @@ const styles = StyleSheet.create({
   },
   containerMainOracionCompleta: {
     marginTop: 12,
-    padding: 12,
+    padding: 10,
+    marginHorizontal: 20,
+    marginVertical: 20,
+    borderWidth: 1,
+    borderRadius: 12,
+    borderColor: '#03045E'
   },
   oracionCompleta: {
-    fontSize: 22,
+    fontSize: 20,
     lineHeight:35,
     fontWeight: '300',
-    textAlign: 'justify',
+    textAlign: 'center',
     
   },
 });

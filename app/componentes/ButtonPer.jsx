@@ -29,7 +29,9 @@ export default function ButtonPer(props) {
 const styles = StyleSheet.create({
     txtInicio: {
         color: 'white',
-        fontSize: 20,
-        fontWeight: '400',
+        fontSize: 15,
+        fontWeight: '500',
+        textAlign: 'center',
+        padding: 5,
     },
 });
