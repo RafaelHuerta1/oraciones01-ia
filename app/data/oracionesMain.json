@@ -5,31 +5,35 @@
         {
             "id": 1,
             "title": "Padre Nuestro",
-            "uri": "./src/assets/imgFondoWelcome03.jpg",
+            "uri": "./src/assets/icon.png",
             "description": "Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga tu reino; hágase tu voluntad, así en la tierra como en el cielo. Danos hoy el pan nuestro de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén."
         },
         {
             "id": 2,
             "title": "Ave María",
-            "uri": "./src/assets/imgFondoWelcome03.jpg",
+            "uri": "./src/assets/icon.png",
+
             "description": "Dios te salve, María, llena eres de gracia, el Señor es contigo; bendita Tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros pecadores, ahora y en la hora de nuestra muerte. Amén."
         },
         {
             "id": 3,
             "title": "Gloria al Padre",
-            "uri": "./src/assets/imgFondoWelcome03.jpg",
+            "uri": "./src/assets/icon.png",
+
             "description": "Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén."
         },
         {
             "id":4,
             "title": "La Salve (Salve Regina)",
-            "uri": "./src/assets/imgFondoWelcome03.jpg",
+            "uri": "./src/assets/icon.png",
+
             "description": "Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A Ti llamamos los desterrados hijos de Eva; a Ti suspiramos, gimiendo y llorando en este valle de lágrimas. Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro muéstranos a Jesús, fruto bendito de tu vientre. Oh clemente, oh piadosa, oh dulce Virgen María. Ruega por nosotros, Santa Madre de Dios, para que seamos dignos de alcanzar las promesas de nuestro Señor Jesucristo. Amén."
         },
         {
             "id": 5,
-            "title": "Ángel Custodio",
-            "uri": "./src/assets/imgFondoWelcome03.jpg",
+            "title": " Angel de mi guarda",
+            "uri": "./src/assets/icon.png",
+
             "description": "Ángel de Dios, que eres mi custodio, ilumíname, guárdame, rígieme y gobiérname. Amén."
 
         }         

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import { useEffect , useState} from "react";
 import { useLocalSearchParams } from "expo-router";
 //import { useState, useEffect } from 'react';
@@ -145,12 +145,21 @@ searchOracion(id);
         style={{ alignItems: 'center',flexDirection: 'row', justifyContent: 'space-around', padding: -1}}
 
       >
-        <ButtonPer text='Compartir Oracion'
+    
+         
+       {
+        /* VERSION 2-
+            <ButtonPer text='Compartir Oracion'
         color='#0077B6'
         />
+            
          <ButtonPer text='Enviar a la red'
         color='#03045E'
+        func={() => Alert.alert('Oracion enviada a la red')}
         />
+        
+        */
+       }
         
       </View>
 

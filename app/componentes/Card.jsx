@@ -1,79 +1,81 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Stack, router, Link } from 'expo-router';
 
 //import { useNavigation } from '@react-navigation/native';
 
- 
-const Card = ({title}) => {
-    //console.log(title)
 
-    return (
-        <View style={styles.card}>
-           <Link href={'/pantallas/Plantilla'} asChild>
-           <TouchableOpacity 
+/* traer imags de algo relacionado a la oracion
+  Padre nuestro
+  Ave Maria
+  Gloria al padre
+  La salve (salve regina)
+  Angel de mi guarda
+*/
+const Card = ({ title, imageUrl }) => {
+  //console.log(title)
+  console.log(imageUrl)
+  
+  return (
+    <View style={styles.card}>
+      <Link href={'/pantallas/Plantilla'} asChild>
+        <TouchableOpacity
           // onPress={ () => navigation.navigate("Orar")}
-            style={styles.containerCardMain}
-            
-            >
-                
-              <Text style={styles.title}>{title}</Text>
-             
-        
-            </TouchableOpacity>
+          style={styles.containerCardMain}
 
-           </Link>
- 
-    
-        </View>
-    );
+        >
+         
+            <Text
+              style={styles.txtOracion}
+            >  {title} </Text>
+
+
+
+
+
+
+        </TouchableOpacity>
+
+      </Link>
+
+
+    </View>
+  );
 };
 
 const styles = {
-    card: {
-        backgroundColor: '#90E0EF',
-        borderRadius: 20,
-        borderColor: 'black',
-        borderWidth: 1,
-        width: 100,
-        height: 200,
-       // padding: 10,
-        margin: 10,
-        overflow: 'hidden',  
-      
-    },
-    containerCardMain: {
-        flex: 1,
-        justifyContent: 'center',
-      },
-    image: {
-        flex: 1,
-        alignItems: 'center',
-        width:'100',
-        height: '100',
-        resizeMode: "cover",
-        justifyContent: "center",
-        borderRadius: 25,
-      },
-    title: {
-        color: 'black',
-        opacity: 1,
-        fontSize: 22,
-        fontWeight: '400',
-        textAlign: 'center',
-        fontWeight: '400',
-        //marginTop: 50,
-    },
-    imgCard: {
-        width: 100,
-        height: 100,
-        //borderRadius: 25,
-        alignSelf: 'center',
+  card: {
+    width: 200,
+    height: 100,
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: '#CAF0F8',
+    borderWidth: 1,
+    borderColor: 'black',
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
+    elevation: 5,
+    justifyContent: 'center',
+    backgroundImg: 'url(../assets/img2.png)',
+  },
+  txtOracion: {
+    fontSize: 20,
+    fontWeight: '700',
+    textAlign: 'center',
+    color: 'black',
+    margin: 10,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    with: 200,
+    height: 100,
+  },
 
-        //margin: 10,
-        
-    },
-    
 };
 
 export default Card;

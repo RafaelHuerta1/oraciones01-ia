@@ -20,7 +20,14 @@ const data = [
 ];
 const Item = ({ title }) => (
   <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
+    <ScrollView>
+  <Link href="/pantallas/Plantilla" asChild>
+    <TouchableOpacity>
+      <Text style={styles.title}>{title}</Text>
+    </TouchableOpacity>
+  </Link> 
+</ScrollView>
+     
   </View>
 );
 
@@ -29,9 +36,9 @@ const OracionesMain = () => {
  const renderItem = ({ item }) => <Item title={item.title} />;
 
 return (
-  <TouchableOpacity >
    
         <View style={styles.containerMainGrid}>
+             
             <FlatList
             //  onPress={() => router.push('/pantallas/Plantilla')}
              style={styles.cardList}
@@ -47,6 +54,7 @@ return (
                 </View>
               }
               /> 
+           
               <Text >{""}</Text>
               <Link href="/pantallas/Plantilla" asChild>
               <TouchableOpacity  style={styles.containerBtnGenerate}>
@@ -57,7 +65,6 @@ return (
           </View>
 
 
-  </TouchableOpacity>
     
 );
 
@@ -71,35 +78,44 @@ export default OracionesMain;
 const styles = StyleSheet.create({
     item: {
       flex: 1,
-      margin: 3,
-      backgroundColor: '#CAF0F8',
-      padding: 12,
-      borderColor: 'grey',
-      borderWidth: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 10,
-      marginRight: 15,
-      marginLeft:15,
-      marginBottom: 10,
-      width: 50,
+      
         height: 60,
         borderRadius: 12,
         flexDirection: 'row',
+        width: 100,
+        height: 100,
+        margin: 10, 
+        padding: 4,
+        borderRadius: 10,
+        backgroundColor: '#CAF0F8',
+        borderWidth: 1,
+        borderColor: 'black',
+        shadowColor: 'black',
+        shadowOpacity: 0.26,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 8,
+        elevation: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    cardList: {
-      marginTop: 10,
-      width: '100%',
-      padding: 3,
-    },
+
     title: {
       fontSize: 14,
+      textAlign: 'center',
+      fontWeight: '600',
+      color: 'black',
+      fontStyle: 'italic',
+
     },
     containerMainGrid: {
-      marginTop: 10,
+      marginTop: -10,
       width: '100%',
       height: 'auto',
       padding: 3,
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      alignSelf: 'center',
       
     },
     containerBtnGenerate: {
@@ -112,7 +128,7 @@ const styles = StyleSheet.create({
       alignContent: 'center',
       alignSelf: 'center',
      // marginLeft: 15,
-     marginTop: -12,
+     marginTop: -20,
      padding: 2,
     },
     txtMain: {

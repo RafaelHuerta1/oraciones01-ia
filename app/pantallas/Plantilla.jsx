@@ -14,6 +14,8 @@ function PlantillaOracion() {
 
     const [selectedValue, setSelectedValue] = React.useState('padre nuestro'); // oraciones
     const [selectedName, setSelectName] = React.useState('');
+    const [situacionSer, setSituacionSer] = React.useState('');
+
    // const [selectedValueVisibilidad, setSelectedValueVisibilidad] = React.useState(false); // oracion publica o privada
     const [oracionInfo, setOracionInfo] = React.useState(null);
     const [modalVisible, setModalVisible] = React.useState(false);
@@ -27,16 +29,15 @@ function PlantillaOracion() {
     const options = [
         { label: 'Padre Nuestro', value: 'padre nuestro' },
         { label: 'Ave María', value: 'ave maria' },
-        { label: 'Enfermos', value: 'enfermos' },
-        { label: 'Agradecimiento', value: 'agradecimiento' },
-        { label: 'Difuntos', value: 'difuntos' },
-        { label: 'Fortaleza', value: 'fortaleza' },
-        { label: 'Depresion', value: 'depresion' },
-        { label: 'Familia y Amigos', value: 'familia y amigos' },
-        { label: 'Esperanza', value: 'esperanza' },
-        { label: 'Protección y Seguridad', value: 'protección y seguridad' },
-
+        { label: 'Gloria al Padre', value: 'gloria al padre' },
+        { label: 'La Salve', value: 'la salve' },
+        { label: 'Angel de mi Guarda', value: 'angel de mi guarda' },
+        { label: 'Oracion por la Mañana', value: 'oracion por la mañana' },
+        { label: 'Oracion por la Noche', value: 'oracion por la noche' },
+        { label: 'Oracion por los Enfermos', value: 'oracion por los enfermos' },
+        { label: 'Oracion por los Difuntos', value: 'oracion por los difuntos' },
     ];
+
 
     const options2 = [
         { label: 'Oracion Publica', value: true },
@@ -53,7 +54,7 @@ function PlantillaOracion() {
             return;
         }
         try {
-            setOracionInfo({ valorName: selectedName, valorOracion: selectedValue });
+            setOracionInfo({ valorName: selectedName, valorOracion: selectedValue, valorSituacion: situacionSer});
            // router.push('/pantallas/CrearOracion', { valorName: selectedName, valorOracion: selectedValue });
             // console.log('Oracion info: ', oracionInfo.valorName, oracionInfo.valorOracion);
             //Alert.alert('Listo oracion enviada', selectedName);
@@ -95,6 +96,17 @@ function PlantillaOracion() {
                         placeholder="Nombre de tu ser querido"
                         value={selectedName}
                         onChangeText={text => setSelectName(text)}
+                    />
+                      <Text
+                        style={{ marginLeft: 10, marginTop: 15, textDecorationStyle: 'solid', textDecorationColor: 'black', fontSize: 20, fontWeight: '400' }}
+                    >
+                        Cual es la situacion por la que esta pasando tu ser querido? 
+                    </Text>
+                    <TextInput
+                        style={{ width: '100%', height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 15, padding: 10, height: 50 }}
+                        placeholder="Situcion por la que esta pasando tu ser querido"
+                        value={situacionSer}
+                        onChangeText={text => setSituacionSer(text)}
                     />
 
                     <Text

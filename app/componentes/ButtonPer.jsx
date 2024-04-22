@@ -7,7 +7,7 @@ export default function ButtonPer(props) {
     return (
 
                 <TouchableOpacity
-             //   onPress={  () => console.log(props.link)}
+              onPress={props.func}
                     style={{
                         backgroundColor: props.color,
                         padding: 10,

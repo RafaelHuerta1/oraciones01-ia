@@ -14,6 +14,7 @@ export default function HomeScreen() {
  // console.log(navigation)
  // const router = Router.useRouter();
  const logout = () => {
+
      signOut(auth).then(() => {
          // Sign-out successful.
          setTimeout(() => {
@@ -24,16 +25,18 @@ export default function HomeScreen() {
          // An error happened.
          console.log('Error al cerrar sesión')
        });
+       
+      //router.push('/pantallas/Plantilla');
  }
 
   return (
     <View style={styles.mainContainerHome}>
             <Stack.Screen
               options={{
-                headerTitle: 'Ora por su ser querido',
+                headerTitle: 'Inicio',
                 headerTitleAlign: 'start',
                 headerRight:  () => (
-                  <Button onPress={logout} title="Cerrar sesión"  />
+                  <Button onPress={logout} title="Cerrar Sesion"  />
                   ),
                // headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/pantallas/Home') }} />,
                 }}

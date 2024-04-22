@@ -13,9 +13,10 @@ let data  = require('../data/oracionesMain.json');
 
 const OracionesFeed = (  ) => {
    /// console.log(navigation)
-
+    //console.log(data.oracionesMain[0].uri)
     return (
         <View>
+             <ScrollView >
             <View>
                 <View>
                     <Text style={{ fontSize: 22, fontWeight: "bold", margin: 7, textAlign: "left"}}>Oraciones Populares</Text>
@@ -38,7 +39,7 @@ const OracionesFeed = (  ) => {
                     )}
                 </ScrollView>
             </View>
-
+            </ScrollView>
             <OracionesMain
              //navigation={navigation}
             />
