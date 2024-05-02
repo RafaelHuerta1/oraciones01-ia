@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { Stack, router, Link } from 'expo-router';
 
 //import { useNavigation } from '@react-navigation/native';
@@ -15,20 +15,23 @@ import { Stack, router, Link } from 'expo-router';
 const Card = ({ title, imageUrl }) => {
   //console.log(title)
   console.log(imageUrl)
-  
+
   return (
     <View style={styles.card}>
+
       <Link href={'/pantallas/Plantilla'} asChild>
         <TouchableOpacity
           // onPress={ () => navigation.navigate("Orar")}
-          style={styles.containerCardMain}
+          //style={styles.containerCardMain}
 
         >
-         
-            <Text
-              style={styles.txtOracion}
-            >  {title} </Text>
 
+
+{imageUrl && (
+  <ImageBackground source={{ uri: imageUrl }} style={{ width: '100%', height: '100%' }}>
+    <Text style={styles.txtOracion}>{title}</Text>
+  </ImageBackground>
+)}
 
 
 
@@ -37,6 +40,9 @@ const Card = ({ title, imageUrl }) => {
         </TouchableOpacity>
 
       </Link>
+
+
+
 
 
     </View>
@@ -59,7 +65,6 @@ const styles = {
     shadowRadius: 8,
     elevation: 5,
     justifyContent: 'center',
-    backgroundImg: 'url(../assets/img2.png)',
   },
   txtOracion: {
     fontSize: 20,
@@ -75,7 +80,6 @@ const styles = {
     with: 200,
     height: 100,
   },
-
 };
 
 export default Card;

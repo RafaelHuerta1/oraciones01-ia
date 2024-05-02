@@ -30,6 +30,15 @@
     "scheme": "oraciones01-ia",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d6e4b4de-8da2-4fe0-93c9-dee7c14f0567"
+      }
+    },
+    "owner": "rafa04huerts"
   }
 }

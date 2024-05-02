@@ -9,10 +9,14 @@ import { initializeApp } from 'firebase/app';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import registerNNPushToken from 'native-notify';
 
 export default function HomeScreen() {
- // console.log(navigation)
- // const router = Router.useRouter();
+
+  //registerNNPushToken(21040, 'lBM3RME0997q7b4f7QRq3O');
+  registerNNPushToken(21093, 'vHJB5qYrvgofyIvhA4qhbd');
+  console.log('Token registrado');  
+  
  const logout = () => {
 
      signOut(auth).then(() => {
@@ -23,7 +27,8 @@ export default function HomeScreen() {
          }, 1000);
        }).catch((error) => {
          // An error happened.
-         console.log('Error al cerrar sesión')
+         console.log('Error al cerrar sesión', error);
+         Alert.alert('Error al cerrar sesión');
        });
        
       //router.push('/pantallas/Plantilla');
