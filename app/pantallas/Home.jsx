@@ -13,10 +13,13 @@ import registerNNPushToken from 'native-notify';
 
 export default function HomeScreen() {
 
-  //registerNNPushToken(21040, 'lBM3RME0997q7b4f7QRq3O');
-  registerNNPushToken(21093, 'vHJB5qYrvgofyIvhA4qhbd');
-  console.log('Token registrado');  
+
   
+    /** quiero mostrarle la notificacion y mantenerlos en la app,  ahora mismo cada que el usuario recibe una notificacion por medio de native-notify 
+     *  el usuario al hacerle click a la notificacion lo envia al login, existe alguna forma de modificar esto?
+     * 
+     */
+
  const logout = () => {
 
      signOut(auth).then(() => {

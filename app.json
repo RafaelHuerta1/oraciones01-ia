@@ -4,10 +4,10 @@
     "slug": "oraciones01-ia",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./app/assets/logoCelestiaVox.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./app/assets/logoCelestiaVox.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,17 +15,18 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rafaelhuerta.oraciones01ia"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/logoCelestiaVox.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.rafaelhuerta.oraciones01ia"
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./app/assets/logoCelestiaVox.png"
     },
     "scheme": "oraciones01-ia",
     "plugins": [

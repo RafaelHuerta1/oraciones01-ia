@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import CreateOracion from './CrearOracion';
 import { Stack, router, Link } from 'expo-router';
 import ModalInfo from "../componentes/ModalInf";
+import registerNNPushToken from 'native-notify';
 
 
 
@@ -11,7 +12,10 @@ import ModalInfo from "../componentes/ModalInf";
 
 function PlantillaOracion() {
     //console.log(navigation)
-
+  //registerNNPushToken(21040, 'lBM3RME0997q7b4f7QRq3O');
+  registerNNPushToken(21093, 'vHJB5qYrvgofyIvhA4qhbd');
+  console.log('Token registrado');  
+  
     const [selectedValue, setSelectedValue] = React.useState('padre nuestro'); // oraciones
     const [selectedName, setSelectName] = React.useState('');
     const [situacionSer, setSituacionSer] = React.useState('');
