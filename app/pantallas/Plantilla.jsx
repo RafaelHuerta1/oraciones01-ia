@@ -1,12 +1,19 @@
-import React, {useEffect} from "react";
+import React, {useEffect,  useState} from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import CreateOracion from './CrearOracion';
 import { Stack, router, Link } from 'expo-router';
 import ModalInfo from "../componentes/ModalInf";
 import registerNNPushToken from 'native-notify';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+import { InterstitialAd, AdEventType } from 'react-native-google-mobile-ads';
 
+const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER : 'ca-app-pub-3715029693544325~7134076253';
+const adUnitId2 = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3715029693544325~7134076253';
 
+const interstitial = InterstitialAd.createForAdRequest(adUnitId2, {
+    keywords: ['fashion', 'clothing'],
+  });
 
 //console.log(CreateOracion);
 
@@ -24,7 +31,20 @@ function PlantillaOracion() {
     const [oracionInfo, setOracionInfo] = React.useState(null);
     const [modalVisible, setModalVisible] = React.useState(false);
 
+    const [loaded, setLoaded] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      setLoaded(true);
+      interstitial.show();
+    });
+
+    // Start loading the interstitial straight away
+    interstitial.load();
+
+    // Unsubscribe from events on unmount
+    return unsubscribe;
+  }, []);
 
 
     // console.log(  { valorName, valorOracion } = oracionInfo  );
@@ -63,6 +83,8 @@ function PlantillaOracion() {
             // console.log('Oracion info: ', oracionInfo.valorName, oracionInfo.valorOracion);
             //Alert.alert('Listo oracion enviada', selectedName);
             setModalVisible(true);
+            interstitial.load()
+         
 
             // router.push('/(tabs)/MisOraciones');
         } catch (error) {
@@ -85,6 +107,12 @@ function PlantillaOracion() {
             <View>
 
 
+                <BannerAd
+      unitId={adUnitId}
+      size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+      style={{alignSelf: 'center', backgroundColor: 'red'}}
+    />
+       
 
 
                 <Text style={styles.txtMainPlantilla}>Ora por tu ser querido</Text>
@@ -190,7 +218,7 @@ const styles = StyleSheet.create({
         fontSize: 33,
         fontWeight: '500',
         textAlign: 'center',
-        marginTop: 100,
+        marginTop: 50,
         color: '#03045E',
     },
     containerValuesMain: {

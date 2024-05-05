@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "404195742154",
+    "firebase_url": "https://oracionesia-default-rtdb.firebaseio.com",
+    "project_id": "oracionesia",
+    "storage_bucket": "oracionesia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404195742154:android:5644bf4b1d0aea96507f33",
+        "android_client_info": {
+          "package_name": "com.rafaelhuerta.oraciones01ia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404195742154-u150vh2j0dpoo4oev0h5961vc5vpku47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPo_RdZPofn3Fs-0pq0T6xEG-zX1cUvjo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "404195742154-u150vh2j0dpoo4oev0h5961vc5vpku47.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

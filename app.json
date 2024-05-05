@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "oraciones01-ia",
+    "name": "CelestiaVox",
     "slug": "oraciones01-ia",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,6 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -23,14 +24,16 @@
         "foregroundImage": "./app/assets/logoCelestiaVox.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.rafaelhuerta.oraciones01ia"
+      "package": "com.rafaelhuerta.oraciones01ia",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./app/assets/logoCelestiaVox.png"
     },
     "scheme": "oraciones01-ia",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-build-properties"
     ],
     "extra": {
       "router": {
@@ -41,5 +44,8 @@
       }
     },
     "owner": "rafa04huerts"
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-3715029693544325~7134076253"
   }
 }

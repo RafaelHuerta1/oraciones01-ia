@@ -10,6 +10,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import registerNNPushToken from 'native-notify';
+import 'expo-dev-client';
 
 export default function HomeScreen() {
 
@@ -20,8 +21,9 @@ export default function HomeScreen() {
      * 
      */
 
- const logout = () => {
 
+ const logout = () => {
+  /*
      signOut(auth).then(() => {
          // Sign-out successful.
          setTimeout(() => {
@@ -33,8 +35,8 @@ export default function HomeScreen() {
          console.log('Error al cerrar sesión', error);
          Alert.alert('Error al cerrar sesión');
        });
-       
-      //router.push('/pantallas/Plantilla');
+       */
+      router.push('/pantallas/Plantilla');
  }
 
   return (
@@ -44,7 +46,7 @@ export default function HomeScreen() {
                 headerTitle: 'Inicio',
                 headerTitleAlign: 'start',
                 headerRight:  () => (
-                  <Button onPress={logout} title="Cerrar Sesion"  />
+                  <Button onPress={logout} title="Orar por su ser querido."  />
                   ),
                // headerLeft: () => <FontAwesome.Button size={20} name="arrow-left" backgroundColor="#3b5998"  onPress={() => {router.push('/pantallas/Home') }} />,
                 }}
