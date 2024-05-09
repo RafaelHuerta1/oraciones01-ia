@@ -6,13 +6,7 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity, ScrollView, Image }
 //import GenerarOraciones from "../screens/GenerarOraciones";
 import registerNNPushToken from 'native-notify';
 
-import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
 
-const adUnitId3 = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3715029693544325~7134076253';
-
-const interstitial = InterstitialAd.createForAdRequest(adUnitId3, {
-  keywords: ['fashion', 'clothing'],
-});
 
 const data = [
   { id: 1, title: 'Enfermos', img: 'https://th.bing.com/th/id/OIG4.0pLCXS0M5OzhBn5vjASk?w=1024&h=1024&rs=1&pid=ImgDetMain' }, // enfermos

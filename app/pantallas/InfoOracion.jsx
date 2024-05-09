@@ -6,7 +6,11 @@ import { useLocalSearchParams } from "expo-router";
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { getAuth } from "firebase/auth";
 import ButtonPer from "../componentes/ButtonPer";
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+import { InterstitialAd, AdEventType } from 'react-native-google-mobile-ads';
 
+
+const androidID = 'ca-app-pub-3715029693544325/2372364859';
 
 export default function InfoOracion() {
   /*
@@ -126,7 +130,12 @@ searchOracion(id);
       <View
         //style={{ alignItems: 'center', height: 100, justifyContent: 'center', backgroundColor: '#03045E'}}
       >
-   
+                        <BannerAd
+      unitId={__DEV__ ? TestIds.BANNER : androidID}
+      size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+      style={{alignSelf: 'center', backgroundColor: 'white'}}
+    />
+       
       </View>
       <View
         style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20,}}

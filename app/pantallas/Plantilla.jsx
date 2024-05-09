@@ -8,11 +8,14 @@ import registerNNPushToken from 'native-notify';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import { InterstitialAd, AdEventType } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER : 'ca-app-pub-3715029693544325~7134076253';
-const adUnitId2 = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3715029693544325~7134076253';
 
-const interstitial = InterstitialAd.createForAdRequest(adUnitId2, {
-    keywords: ['fashion', 'clothing'],
+const androidID = 'ca-app-pub-3715029693544325/4857899724';
+
+
+const interAndroidAd = 'ca-app-pub-3715029693544325/2303022605';
+
+const interstitial = InterstitialAd.createForAdRequest(interAndroidAd, {
+    keywords: ['fashion', 'clothing', 'apparel', 'shopping', 'lifestyle'],
   });
 
 //console.log(CreateOracion);
@@ -31,6 +34,9 @@ function PlantillaOracion() {
     const [oracionInfo, setOracionInfo] = React.useState(null);
     const [modalVisible, setModalVisible] = React.useState(false);
 
+
+
+
     const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -39,11 +45,21 @@ function PlantillaOracion() {
       interstitial.show();
     });
 
-    // Start loading the interstitial straight away
-    interstitial.load();
-
-    // Unsubscribe from events on unmount
-    return unsubscribe;
+    const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, () => {
+        setLoaded(false);
+  
+        // Load a new ad when the current ad is closed
+        interstitial.load();
+      });
+  
+      // Start loading the interstitial ad straight away
+      interstitial.load();
+  
+      // Unsubscribe from events on unmount
+      return () => {
+        unsubscribeLoaded();
+        unsubscribeClosed();
+      };
   }, []);
 
 
@@ -108,7 +124,7 @@ function PlantillaOracion() {
 
 
                 <BannerAd
-      unitId={adUnitId}
+      unitId={__DEV__ ? TestIds.BANNER : androidID}
       size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
       style={{alignSelf: 'center', backgroundColor: 'red'}}
     />
