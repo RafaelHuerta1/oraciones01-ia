@@ -10,7 +10,7 @@ import Welcome from './pantallas/Welcome';
 import TabLayout from './pantallas/_layout';
 import Tab from './(tabs)/_layout';
 import * as Updates from 'expo-updates';
-
+import 'expo-dev-client';
 import { useEffect } from 'react';
 // signin
 // signup

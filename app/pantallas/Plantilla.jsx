@@ -88,7 +88,7 @@ function PlantillaOracion() {
     const orar = () => {
         //setOracionInfo({ valorName: selectedName, valorOracion: selectedValue, navigation: navigation });
         if (selectedName === '' || selectedName === null || selectedName === undefined) {
-            Alert.alert('Por favor, ingrese el nombre de su ser querido');
+            Alert.alert('Ingrese el nombre de su ser querido para continuar.');
             return;
         }
         try {
@@ -98,7 +98,15 @@ function PlantillaOracion() {
             //Alert.alert('Listo oracion enviada', selectedName);
             setModalVisible(true);
             interstitial.load()
-         
+
+             // Add a one-time listener for the LOADED event
+        const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+            // Show the ad when it's loaded
+            interstitial.show();
+
+            // Unsubscribe from the event
+            unsubscribe();
+        });
 
             // router.push('/(tabs)/MisOraciones');
         } catch (error) {

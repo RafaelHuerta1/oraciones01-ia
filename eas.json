@@ -11,10 +11,13 @@
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "preview",
+      "android": {
+        "buildType": "app-bundle"
+      }
     },
     "production": {
+      "channel": "production"
     }
   }
-  }
-
+}
