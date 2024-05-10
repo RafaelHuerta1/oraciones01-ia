@@ -52,12 +52,10 @@ function PlantillaOracion() {
         interstitial.load();
       });
   
-      // Start loading the interstitial ad straight away
-      interstitial.load();
-  
+
       // Unsubscribe from events on unmount
       return () => {
-        unsubscribeLoaded();
+        unsubscribe();
         unsubscribeClosed();
       };
   }, []);
