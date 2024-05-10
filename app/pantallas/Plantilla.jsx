@@ -58,7 +58,7 @@ function PlantillaOracion() {
         unsubscribe();
         unsubscribeClosed();
       };
-  }, []);
+  }, [loaded]); // revisar loaded, 
 
 
     // console.log(  { valorName, valorOracion } = oracionInfo  );
