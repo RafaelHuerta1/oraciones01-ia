@@ -11,7 +11,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -27,13 +26,17 @@
       "package": "com.rafaelhuerta.oraciones01ia",
       "googleServicesFile": "./google-services.json"
     },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
     "web": {
       "favicon": "./app/assets/logoCelestiaVox.png"
     },
     "scheme": "oraciones01-ia",
     "plugins": [
       "expo-router",
-      "expo-build-properties"
+      "expo-build-properties",
+      "expo-updates"
     ],
     "extra": {
       "router": {
@@ -43,7 +46,10 @@
         "projectId": "d6e4b4de-8da2-4fe0-93c9-dee7c14f0567"
       }
     },
-    "owner": "rafa04huerts"
+    "owner": "rafa04huerts",
+    "updates": {
+      "url": "https://u.expo.dev/d6e4b4de-8da2-4fe0-93c9-dee7c14f0567"
+    }
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-3715029693544325~7134076253"
