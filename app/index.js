@@ -25,7 +25,8 @@ export default function index() {
         await Updates.reloadAsync();
       }
     } catch (error) {
-      // You can also add an alert() to see the error message in case of an error when fetching updates.
+      // You can also add an alert() to see the error message in case of an error when fetching updates.}
+      console.log(error);
       alert(`Error fetching latest Expo update: ${error}`);
     }
   }

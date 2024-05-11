@@ -2,7 +2,7 @@
   "expo": {
     "name": "CelestiaVox",
     "slug": "oraciones01-ia",
-    "version": "1.2.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/logoCelestiaVox.png",
     "userInterfaceStyle": "light",
@@ -36,7 +36,12 @@
     "plugins": [
       "expo-router",
       "expo-build-properties",
-      "expo-updates"
+      [
+      "expo-updates", 
+      {
+        "username": "rafa04huerts"
+      }
+     ]
     ],
     "extra": {
       "router": {

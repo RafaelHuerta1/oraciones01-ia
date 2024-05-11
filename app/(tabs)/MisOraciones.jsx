@@ -7,8 +7,8 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import firebaseConfig from '../../src/firebase';
 import { initializeApp } from 'firebase/app';
-
 import { useLocalSearchParams } from "expo-router";
+import ModalInfo from '../componentes/ModalInf';
 
 const app = initializeApp(firebaseConfig);
 
@@ -25,7 +25,7 @@ export default function MisOraciones() {
     //const [oracionCompletaUsuario, setOracionCompletaUsuario] = useState([]);
     const db = getDatabase();
     const [allOraciones, setAllOraciones] = useState([]);
-
+    const [modalSinDatos, setModalSinDatos] = useState(false);
 
 
     // buscar el nodo en oraciones/ que conicida con el selectName  y traerlo de firebase
@@ -35,100 +35,75 @@ export default function MisOraciones() {
 
     // const referenceAllOraciones = ref(db, "users/" + uid );
     //console.log('Oraciones ref: ', referenceAllOraciones);
+    useEffect(() => {
+        const unsubscribe = onValue(oracionesRef, (snapshot) => {
+            const data = snapshot.val();
+            console.log('DATA: ', data);
+            
+            if(data) {
+                const allOraciones2 = Object.values(data).map(item => item);
+                console.log('All oraciones: ', allOraciones2);
+                setAllOraciones(allOraciones2);
+                console.log('All oraciones: ', allOraciones2);
+            } else {
+                console.log('No hay datos');
+                setModalSinDatos(true);
 
-
-    if(allOraciones != undefined || allOraciones != null){
-        useEffect(() => {
-            const unsubscribe = onValue(oracionesRef, (snapshot) => {
-                const data = snapshot.val();
-                console.log('DATA: ', data);
-                // Extrae todos los nombres de las oraciones
-                
-                //const nombresOraciones = Object.values(data).map(item => item.nombre);
-                //const oraciones = Object.values(data).map(item => item.oracion);
-                //const oracionCompletas = Object.values(data).map(item => item.oracionesCreadas);
-                const allOraciones = Object.values(data).map(item => item);
-                console.log('All oraciones: ', allOraciones);
-                /*
-                console.log('Nombres: ', nombresOraciones);
-                console.log('Oraciones: ', oraciones);
-                console.log('Oraciones completas: ', oracionCompletas);
-                setNombres(nombresOraciones);
-                setOracionesName(oraciones);
-                setOracionCompleta(oracionCompletas);
-                */
-                    
-                setAllOraciones(allOraciones);
-    
-                console.log('All oraciones: ', allOraciones);
-    
-             });
-             
-            return () => unsubscribe();
+            }
+        });
+        
+        return () => unsubscribe();
     }, []);
+    
+   
+
+
+
+
+
+    const createCard = (index, nombre, oracion, oracionesCreadas)  => {
+        //console.log('Nombres: ', nombres);
+        return (
+            <View key={index} style={styles.containerCard}>
+    
+                <View style={styles.containerOracionName} >
+                    <Text style={styles.txtMain}>Esta oracion es para: </Text>
+                    <Text style={styles.txtMain}> {nombre} </Text>
+                </View>
+    
+                <View style={styles.containerOracion}>
+                    <Text style={styles.txtMain}>Oracion: </Text>
+                    <Text style={styles.txtMain}> {oracion}</Text>
+                </View>
+                
+                <View style={styles.containerOracion}>
+                <Link  
+                 href={{
+                    pathname: "/pantallas/InfoOracion",
+                    params: {nombre: nombre ,    oracionesCreadas: oracionesCreadas}
+                  }}
+                  asChild
+                  >
+                
+                
+                        <TouchableOpacity /*onPress={verMas} */>
+                                <Text style={styles.txtVerMas}>Ver mas</Text>
+                            </TouchableOpacity>
+                </Link>
+                   
+                    <Text style={styles.txtVerMas}>Eliminar Oracion.</Text>
+    
+                </View>
+    
+            </View>
+        );
+    
+    
     }
-    else{
-        console.log('No hay oraciones');
-    }
-
-
-
-
-
-
-const createCard = (index, nombre, oracion, oracionesCreadas)  => {
-    //console.log('Nombres: ', nombres);
-    return (
-        <View key={index} style={styles.containerCard}>
-
-            <View style={styles.containerOracionName} >
-                <Text style={styles.txtMain}>Esta oracion es para: </Text>
-                <Text style={styles.txtMain}> {nombre} </Text>
-            </View>
-
-            <View style={styles.containerOracion}>
-                <Text style={styles.txtMain}>Oracion: </Text>
-                <Text style={styles.txtMain}> {oracion}</Text>
-            </View>
-            
-            <View style={styles.containerOracion}>
-            <Link  
-             href={{
-                pathname: "/pantallas/InfoOracion",
-                params: {nombre: nombre ,    oracionesCreadas: oracionesCreadas}
-              }}
-              asChild
-              >
-            
-            
-                    <TouchableOpacity /*onPress={verMas} */>
-                            <Text style={styles.txtVerMas}>Ver mas</Text>
-                        </TouchableOpacity>
-            </Link>
-               
-                <Text style={styles.txtVerMas}>Eliminar Oracion.</Text>
-
-            </View>
-
-        </View>
-    );
-
-
-
-
-
-
     
 
 
-
-
-
-
-
-
-
-}
+    
 
 
 return(
@@ -139,11 +114,17 @@ return(
             <ScrollView
                 showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} // oculta la barra de scroll
             >
-                {allOraciones.map((item, index) => {
+               {
+                allOraciones != undefined || allOraciones == []  || !createCard ? allOraciones.map((item, index) => {
                     return createCard(index, item.nombre, item.oracion, item.oracionesCreadas);
-                })}
+                }) : <Tetx style={{textAlign: 'center'}}>Aun no tienes oraciones</Tetx>
+
+               }
+               
             </ScrollView>
         </View>
+        <ModalInfo modalVisible={modalSinDatos} setModalVisible={setModalSinDatos} textModal='Aun no has creado oraciones' />
+
     </View>
 );
 

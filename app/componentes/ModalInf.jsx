@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Button, Modal } from "react-native";
 import React from 'react';
 import { router } from "expo-router";
 
-export default function ModalInfo({ modalVisible, setModalVisible }) {
+export default function ModalInfo({ modalVisible, setModalVisible , textModal}) {
     console.log('Estoy en fc ModalInfo,, ',modalVisible);
     console.log('Estoy en fc ModalInfo,, ',setModalVisible);
    
@@ -16,6 +16,17 @@ export default function ModalInfo({ modalVisible, setModalVisible }) {
         setModalVisible(false);
         router.push({
             pathname: "/(tabs)/MisOraciones",
+            /*
+            params: {
+              token: selectedName
+            }
+            */
+         });
+    }
+    const goPlantilla = () => {
+        setModalVisible(false);
+        router.push({
+            pathname: "/pantallas/Plantilla",
             /*
             params: {
               token: selectedName
@@ -39,14 +50,22 @@ export default function ModalInfo({ modalVisible, setModalVisible }) {
                     <Text
                         style={styles.txtModalInfo}
                     >
-                        Oracion creada con exito!
+                       {textModal}
                     </Text>
 
                     <View
                         style={styles.containerBtnsModalInfo}
-                    >
+                    >   
+                    {
+                        textModal === 'Oracion creada exitosamente, puedes ver tus oraciones en la seccion de mis oraciones.' ? 
+                        <>
                         <Button title="Crear otra oracion" onPress={inPage} />
                         <Button title="Ver mis Oraciones" onPress={goMisOraciones} />
+                        </>
+                        :
+                        <Button title="Crear Oracion" onPress={goPlantilla} />
+                    }
+                       
                     </View>
 
                 </View>
