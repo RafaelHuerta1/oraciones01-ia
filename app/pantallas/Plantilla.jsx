@@ -1,5 +1,5 @@
 import React, {useEffect,  useState} from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button , ScrollView} from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import CreateOracion from './CrearOracion';
 import { Stack, router, Link } from 'expo-router';
@@ -183,6 +183,9 @@ function PlantillaOracion() {
                   
 
                     <View  style={styles.containerBtns}>
+                        <ScrollView>
+
+                 
                     <TouchableOpacity
                         onPress={orar}
                         style={{ backgroundColor: '#03045E', marginTop: 35, padding: 10, borderRadius: 10 }}>
@@ -210,7 +213,7 @@ function PlantillaOracion() {
                             : null
                             }
 
-
+                        </ScrollView>
                     </View>        
               
 
@@ -248,7 +251,7 @@ const styles = StyleSheet.create({
         fontSize: 33,
         fontWeight: '500',
         textAlign: 'center',
-        marginTop: 50,
+        marginTop: 32,
         color: '#03045E',
     },
     containerValuesMain: {

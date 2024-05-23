@@ -14,7 +14,7 @@ export default function ButtonPer(props) {
                         borderRadius: 10,
                         width: 200,
                         alignItems: 'center',
-                        marginTop:0,
+                        margin:20,
                     }}
                 
                 >
@@ -34,5 +34,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         textAlign: 'center',
         padding: 5,
+        marginTop: 0,
     },
 });
