@@ -21,6 +21,7 @@ export default function ButtonPer(props) {
                     <Text style={styles.txtInicio}  >
                         {props.text}
                     </Text>
+                    
                 
                 </TouchableOpacity>
     );

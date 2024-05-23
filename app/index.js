@@ -19,14 +19,13 @@ export default function index() {
   async function onFetchUpdateAsync() {
     try {
       const update = await Updates.checkForUpdateAsync();
-
       if (update.isAvailable) {
         await Updates.fetchUpdateAsync();
         await Updates.reloadAsync();
       }
     } catch (error) {
-      // You can also add an alert() to see the error message in case of an error when fetching updates.}
-      console.log(error);
+      // You can also add an alert() to see the error message in case of an error when fetching updates.
+      console.loG('Error fetching latest Expo update: ', error)
       alert(`Error fetching latest Expo update: ${error}`);
     }
   }
