@@ -81,11 +81,7 @@ export default function InfoOracion() {
         <View
     style={{ alignItems: 'center', justifyContent: 'center', marginTop: -12,}}
     >
-      <Text
-      style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginTop: 10, padding: 10,}}
-      >
-        Comparta la oracion en su red social Favorita.
-      </Text>
+    
       
       <ButtonPer
         func={onShare}

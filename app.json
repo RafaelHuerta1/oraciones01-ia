@@ -2,7 +2,7 @@
   "expo": {
     "name": "CelestiaVox",
     "slug": "oraciones01-ia",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./app/assets/logoCelestiaVox.png",
     "userInterfaceStyle": "light",
@@ -25,7 +25,7 @@
       },
       "package": "com.rafaelhuerta.oraciones01ia",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 3
+      "versionCode": 4
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
