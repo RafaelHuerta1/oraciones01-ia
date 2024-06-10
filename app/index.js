@@ -2,7 +2,7 @@ import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import Welcome from './pantallas/Welcome';
 //import ButtonPer from "../src/componentes/ButtonPer";
-
+import HomeScreen from './pantallas/Home';
 //import { Router } from 'expo-next-react-navigation';
 //import SignUpScreen from '../src/pantallas/SingUp';
 
@@ -12,8 +12,7 @@ import Tab from './(tabs)/_layout';
 import * as Updates from 'expo-updates';
 import 'expo-dev-client';
 import { useEffect } from 'react';
-// signin
-// signup
+
 export default function index() {
  
   async function onFetchUpdateAsync() {
@@ -39,7 +38,9 @@ export default function index() {
 
   return (
    <View>
-      <Welcome />
+            <HomeScreen />
+      {/*
+        <Welcome />
 
       <View  >
           <Link  href="/signIn" asChild >
@@ -53,7 +54,8 @@ export default function index() {
               <Text style={styles.btnCreateCuenta} >Crear Cuenta</Text>
             </TouchableOpacity>
           </Link>
-      </View>    
+      </View>   
+      */} 
 
     </View>
     

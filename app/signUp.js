@@ -195,7 +195,7 @@ function signUp() {
                         <Text style={{ color:'blue', textDecorationLine:"underline", fontSize:20 }}>Iniciar Sesion</Text>
                         
                         </Text>
-                </Link>
+                     </Link>
 
             
 

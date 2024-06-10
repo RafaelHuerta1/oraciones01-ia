@@ -44,6 +44,9 @@ export default function HomeScreen() {
             <Stack.Screen
               options={{
                 headerTitle: 'Inicio',
+                headerStyle: {
+                  backgroundColor: '#f4511e',
+                },
                 headerTitleAlign: 'start',
                 headerRight:  () => (
                   <Button onPress={logout} title="Orar por su ser querido."  />
